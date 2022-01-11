@@ -1,11 +1,11 @@
+import { Outlet } from "react-router";
 import "./App.css";
-import Navigation from "./components/Navigation";
 
 const App = () => {
   return (
-    <>
-      <Navigation />
-    </>
+    <div>
+      <Outlet />
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import { icons } from "../assets";
 
 const ImageAsset = (props) => {
   const { src, className, onClick, style } = props;
+
   return (
     <img
       alt="icon"
