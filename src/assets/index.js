@@ -8,8 +8,11 @@ import oppoReno2 from "../assets/images/oppoReno2.png";
 import oppoA9 from "../assets/images/oppoA9.png";
 import oppoF15proBlue from "../assets/images/oppoF15proimg4.png";
 import footer from "../assets/images/footerimage.png";
+import carouselImage from "../assets/images/carouselImage.png";
+import ChatIcon from "../assets/images/chat.svg";
+import phoneIcon from "../assets/images/mobile.svg";
 
-export const icons = {
+export const images = {
   websiteLogo,
   headerRightSideImage,
   oppo15pro,
@@ -20,4 +23,7 @@ export const icons = {
   oppoA9,
   oppoF15proBlue,
   footer,
+  ChatIcon,
+  phoneIcon,
+  carouselImage,
 };

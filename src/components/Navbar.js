@@ -4,13 +4,13 @@ import ImageAsset from "./ImageAsset";
 const Navbar = () => {
   return (
     <div className="flex flex-col">
-      <div className="flex mt-4">
-        <div className="WebsiteLogo  h-full mr-10 ml-10">
+      <div className="flex flex-col lg:flex-row mt-4">
+        <div className="WebsiteLogo  h-full mr-0 lg:mr-10 ml-10">
           <ImageAsset className="w-42 h-32" src="websiteLogo" />
         </div>
-        <div className="flex flex-col w-full  mt-20 ml-32">
-          <div className="mainnavContent  w-6/12 ">
-            <nav>
+        <div className="flex flex-col w-full  mt-20  ml-2 lg:ml-32">
+          <div className="mainnavContent   w-full lg:w-6/12 ">
+            <nav className="pl-10 pr-10 lg:pl-0 lg:pr-0">
               <ul className="flex justify-between text-sm  cursor-pointer">
                 <li>Home </li>
                 <li>News </li>
@@ -19,7 +19,7 @@ const Navbar = () => {
               </ul>
             </nav>
           </div>
-          <div className="relative w-8/12">
+          <div className="relative w-[95%] lg:w-8/12 ">
             <input
               className="bg-customGray rounded-full w-full pl-6 mt-4 text-blue-500 px-2 py-2"
               type="text"
@@ -31,7 +31,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className="rightSideAvatar absolute top-0 right-0 ">
+        <div className="rightSideAvatar absolute 	hidden lg:block top-0 right-0 ">
           <ImageAsset
             className="w-[24rem]  h-[15rem] object-cover ml-4 mr-auto"
             src="headerRightSideImage"

@@ -1,5 +1,5 @@
 import React from "react";
-import { icons } from "../assets";
+import { images } from "../assets";
 
 const ImageAsset = (props) => {
   const { src, className, onClick, style } = props;
@@ -7,7 +7,7 @@ const ImageAsset = (props) => {
   return (
     <img
       alt="icon"
-      src={icons[src]}
+      src={images[src]}
       className={`${className}`}
       onClick={onClick}
       style={style}

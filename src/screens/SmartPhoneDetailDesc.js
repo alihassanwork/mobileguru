@@ -49,25 +49,94 @@ const SmartPhoneDetailDesc = () => {
           })}
         </div>
 
-        <div className="w-[80%] h-full  pb-[20rem]  flex flex-col pl-7 pr-7 ">
-          <div className="flex">
-            <div className="w-[40%]  pr-2">
-              <ImageAsset className="w-full h-full " src="oppo15pro" />
+        <div className="w-[80%] h-full  pb-[20rem] bg-[#b0c2d6] flex flex-col pl-2 pr-2 m-5 rounded-[0.2rem] ">
+          {/* First Coloum */}
+          <div className="border-2 border-black rounded-[0.2rem]  flex  mt-5 w-full">
+            <div className=" w-1/4 h-[20rem] ">
+              <ImageAsset className=" object-top p-2" src="carouselImage" />
             </div>
-            <div className="w-[60%] flex flex-col pl-2 space-y-2 ">
-              <ImageAsset className="w-full h-[10rem] " src="BannerImg1" />
-              <ImageAsset className="w-full h-[10rem] " src="BannerImg2" />
-              <ImageAsset className="w-full h-[10rem] " src="BannerImg3" />
+            <div className="w-1/3 flex-col mt-[3rem] h-[10rem] space-y-5 ">
+              <div className="flex items-center text-sm">
+                <ImageAsset className="w-[1.6rem] h-[1.6rem] " src="ChatIcon" />
+                <h1 className="ml-3">Relesed 2021, April</h1>
+              </div>
+              <div className="flex items-center text-sm">
+                <ImageAsset
+                  className="w-[1.6rem] h-[1.6rem]  "
+                  src="phoneIcon"
+                />
+                <h1 className="ml-3">Relesed 2021, April</h1>
+              </div>
+              <div className="flex items-center text-sm">
+                <ImageAsset
+                  className="w-[1.6rem] h-[1.6rem]  "
+                  src="ChatIcon"
+                />
+                <h1 className="ml-3">Relesed 2021, April</h1>
+              </div>
+              <div className="flex items-center text-sm">
+                <ImageAsset
+                  className="w-[1.6rem] h-[1.6rem]  "
+                  src="phoneIcon"
+                />
+                <h1 className="ml-3">Relesed 2021, April</h1>
+              </div>
+            </div>
+            <div className="flex mt-[3rem] h-[10rem] items-center  w-1/3 ">
+              <div>
+                <h1>16,977,86 Hit</h1>
+              </div>
+              <div className="ml-4">
+                <h1>Become Like 15343</h1>
+              </div>
             </div>
           </div>
 
-          <div className="">
-            <ImageAsset className="w-full mt-3 h-[13rem] " src="BannerImg1" />
-            <ImageAsset className="w-full mt-3 h-[13rem] " src="BannerImg2" />
-            <ImageAsset
-              className="w-full mt-3 h-[13rem] "
-              src="oppoF15proBlue"
-            />
+          {/* second col */}
+          <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-2 border-black">
+            <div className="w-1/2 text-center font-bold text-xl ">
+              <h1>Description</h1>
+            </div>
+            <div className="w-1/2 text-center font-bold text-xl">
+              <h1>Specification</h1>
+            </div>
+          </div>
+
+          {/* Third Col */}
+          <div className="w-full flex-col p-2 rounded-[0.5rem] mt-5 pb-[5rem] border-2 border-black">
+            <div className="w-full text-xs mt-5">
+              <p>
+                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
+                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
+                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
+                commodo ullamco do deserunt velit aliqua commodo exercitation
+                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
+                aute ullamco id fugiat est. Magna incididunt et in excepteur
+                ullamco adipisicing laboris aliquip.
+              </p>
+            </div>
+            <div className="w-full text-xs mt-5">
+              <p>
+                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
+                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
+                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
+                commodo ullamco do deserunt velit aliqua commodo exercitation
+                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
+                aute ullamco id fugiat est. Magna incididunt et in excepteur
+                ullamco adipisicing laboris aliquip.
+              </p>
+            </div>
+            <div className="w-full text-xs mt-5">
+              <p>
+                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
+                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
+                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
+                commodo ullamco do deserunt velit aliqua commodo exercitation
+                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
+                aute ullamco id fugiat est. Magna incididunt et in excepteur
+                ullamco adipisicing laboris aliquip.
+              </p>
+            </div>
           </div>
         </div>
       </div>
