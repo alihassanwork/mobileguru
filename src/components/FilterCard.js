@@ -10,7 +10,7 @@ const FilterCard = (props) => {
           <h1>{heading}</h1>
         </div>
 
-        <div className="w-full text-white text-sm text-left space-y-3 mt-3 pb-5 pl-2 flex flex-col">
+        <div className="w-full text-white text-sm text-left space-y-3 mt-3 pb-5 pl-2 flex flex-col bg-[url('assets/images/footerimage.png')]">
           {children}
           <div className="w-full text-center text-xs text-white ">
             <button className="bg-buttonBgColor bg-gradient-to-b p-3 pl-4 pr-4 rounded-md from-buttonBgColorGradian1 to-buttonBgcolorGradian2">
