@@ -5,10 +5,13 @@ const Navbar = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col lg:flex-row mt-4">
-        <div className="WebsiteLogo  h-full mr-0 lg:mr-10 ml-10">
-          <ImageAsset className="w-42 h-32" src="websiteLogo" />
+        <div className="WebsiteLogo  h-full mr-0 ml-0 text-center lg:text-left  lg:mr-10 lg:ml-10">
+          <ImageAsset
+            className="w-42 h-32 inline lg:block "
+            src="websiteLogo"
+          />
         </div>
-        <div className="flex flex-col w-full  mt-20  ml-2 lg:ml-32">
+        <div className="flex flex-col w-full  mt-10 lg:mt-20 ml-2 lg:ml-32">
           <div className="mainnavContent   w-full lg:w-6/12 ">
             <nav className="pl-10 pr-10 lg:pl-0 lg:pr-0">
               <ul className="flex justify-between text-sm  cursor-pointer">

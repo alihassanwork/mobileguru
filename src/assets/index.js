@@ -11,6 +11,7 @@ import footer from "../assets/images/footerimage.png";
 import carouselImage from "../assets/images/carouselImage.png";
 import ChatIcon from "../assets/images/chat.svg";
 import phoneIcon from "../assets/images/mobile.svg";
+import starIcon from "../assets/images/Star.svg";
 
 export const images = {
   websiteLogo,
@@ -26,4 +27,5 @@ export const images = {
   ChatIcon,
   phoneIcon,
   carouselImage,
+  starIcon,
 };

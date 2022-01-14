@@ -42,52 +42,112 @@ const SmartPhoneDetailDesc = () => {
     <React.Fragment>
       <Navbar />
 
-      <div className="mainContent mt-20 flex px-10">
-        <div className="w-[20%] ">
+      <div className="mainContent mt-20  flex flex-col lg:flex-row lg:px-10">
+        <div className="w-full lg:w-[20%] px-4 lg:px-0">
           {leftMenu.map(({ title, products }) => {
             return <FilterMobileCard title={title} products={products} />;
           })}
         </div>
 
-        <div className="w-[80%] h-full  pb-[20rem] bg-[#b0c2d6] flex flex-col pl-2 pr-2 m-5 rounded-[0.2rem] ">
+        <div className="w-full lg:w-[80%] h-full  pb-[20rem] bg-[#b0c2d6] flex flex-col pl-2 pr-2 mt-3  lg:m-5 rounded-[0.2rem] ">
           {/* First Coloum */}
-          <div className="border-2 border-black rounded-[0.2rem]  flex  mt-5 w-full">
-            <div className=" w-1/4 h-[20rem] ">
-              <ImageAsset className=" object-top p-2" src="carouselImage" />
+          <div className="border-2 border-black rounded-[0.2rem] p-[1rem] lg:pb-[3rem] flex-col mt-5 w-full">
+            <div className="flex flex-col lg:flex-row">
+              <div className=" w-full lg:w-1/4 h-[15rem] lg:h-[20rem]  ">
+                <ImageAsset
+                  className=" object-top p-2  h-[15rem]"
+                  src="carouselImage"
+                />
+              </div>
+              <div className="w-full lg:w-1/3 flex-col text-sm lg:mt-[3rem] justify-center h-[10rem]  space-y-5 ">
+                <div className="flex ">
+                  <ImageAsset
+                    className="w-[1.6rem] h-[1.6rem] "
+                    src="ChatIcon"
+                  />
+                  <h1 className="ml-3">Relesed 2021, April</h1>
+                </div>
+                <div className="flex ">
+                  <ImageAsset
+                    className="w-[1.6rem] h-[1.6rem]  "
+                    src="phoneIcon"
+                  />
+                  <h1 className="ml-3">Relesed 2021, April</h1>
+                </div>
+                <div className="flex ">
+                  <ImageAsset
+                    className="w-[1.6rem] h-[1.6rem]  "
+                    src="ChatIcon"
+                  />
+                  <h1 className="ml-3">Relesed 2021, April</h1>
+                </div>
+                <div className="flex ">
+                  <ImageAsset
+                    className="w-[1.6rem] h-[1.6rem]  "
+                    src="phoneIcon"
+                  />
+                  <h1 className="ml-3">Relesed 2021, April</h1>
+                </div>
+              </div>
+              <div className="flex mt-0 lg:mt-[3rem] h-[10rem] items-center justify-center lg:w-1/3 ">
+                <div>
+                  <div className="flex justify-center">
+                    <h1>66%</h1>
+                  </div>
+                  <div>
+                    <h1>16,977,86 Hit</h1>
+                  </div>
+                </div>
+                <div className="ml-4">
+                  <div>
+                    <div className="flex justify-center">
+                      <ImageAsset
+                        className="w-[1.6rem] h-[1.6rem]  "
+                        src="starIcon"
+                      />
+                    </div>
+                    <div>
+                      <h1>Become Like 17234</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="w-1/3 flex-col mt-[3rem] h-[10rem] space-y-5 ">
-              <div className="flex items-center text-sm">
-                <ImageAsset className="w-[1.6rem] h-[1.6rem] " src="ChatIcon" />
-                <h1 className="ml-3">Relesed 2021, April</h1>
-              </div>
-              <div className="flex items-center text-sm">
-                <ImageAsset
-                  className="w-[1.6rem] h-[1.6rem]  "
-                  src="phoneIcon"
-                />
-                <h1 className="ml-3">Relesed 2021, April</h1>
-              </div>
-              <div className="flex items-center text-sm">
-                <ImageAsset
-                  className="w-[1.6rem] h-[1.6rem]  "
-                  src="ChatIcon"
-                />
-                <h1 className="ml-3">Relesed 2021, April</h1>
-              </div>
-              <div className="flex items-center text-sm">
-                <ImageAsset
-                  className="w-[1.6rem] h-[1.6rem]  "
-                  src="phoneIcon"
-                />
-                <h1 className="ml-3">Relesed 2021, April</h1>
-              </div>
-            </div>
-            <div className="flex mt-[3rem] h-[10rem] items-center  w-1/3 ">
-              <div>
-                <h1>16,977,86 Hit</h1>
-              </div>
-              <div className="ml-4">
-                <h1>Become Like 15343</h1>
+            <div>
+              <div className="flex w-full  justify-center   lg:mt-[-4rem]  lg:gap-x-16 text-xs">
+                <div>
+                  <div className="flex justify-center ">
+                    <ImageAsset
+                      className="w-[2.6rem] h-[2.6rem]   "
+                      src="phoneIcon"
+                    />
+                  </div>
+                  <div>
+                    <h1>Relesed 2021, April</h1>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-center">
+                    <ImageAsset
+                      className="w-[2.6rem] h-[2.6rem]   "
+                      src="phoneIcon"
+                    />
+                  </div>
+                  <div>
+                    <h1>Relesed 2021, April</h1>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-center">
+                    <ImageAsset
+                      className="w-[2.6rem] h-[2.6rem]   "
+                      src="phoneIcon"
+                    />
+                  </div>
+                  <div>
+                    <h1>Relesed 2021, April</h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
