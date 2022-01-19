@@ -3,7 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomeScreen, SmartPhoneDetailDesc } from "screens";
+import {
+  HomeScreen,
+  SmartPhoneDetailDesc,
+  UsedSmartPhoneDetails,
+  UsedMobileUploadAdDetails,
+  SmartPhoneDetailSpec,
+} from "screens";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +17,10 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomeScreen />} />
-          <Route path="/about" element={<SmartPhoneDetailDesc />} />
+          <Route path="/description" element={<SmartPhoneDetailDesc />} />
+          <Route path="/PhoneDetails" element={<UsedSmartPhoneDetails />} />
+          <Route path="/UploadAd" element={<UsedMobileUploadAdDetails />} />
+          <Route path="/PhoneSpec" element={<SmartPhoneDetailSpec />} />
         </Route>
       </Routes>
     </Router>

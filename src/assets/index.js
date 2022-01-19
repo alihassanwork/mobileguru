@@ -12,6 +12,7 @@ import carouselImage from "../assets/images/carouselImage.png";
 import ChatIcon from "../assets/images/chat.svg";
 import phoneIcon from "../assets/images/mobile.svg";
 import starIcon from "../assets/images/Star.svg";
+import OppoPhoneRed from "../assets/images/oppoPhoneRed.png";
 
 export const images = {
   websiteLogo,
@@ -28,4 +29,5 @@ export const images = {
   phoneIcon,
   carouselImage,
   starIcon,
+  OppoPhoneRed,
 };

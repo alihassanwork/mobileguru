@@ -38,7 +38,7 @@ const leftMenu = [
   },
 ];
 
-const SmartPhoneDetailDesc = () => {
+const SmartPhoneDetailSpec = () => {
   let navigate = useNavigate();
   return (
     <React.Fragment>
@@ -157,53 +157,111 @@ const SmartPhoneDetailDesc = () => {
           {/* second col */}
           <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-2 border-black">
             <div className="w-1/2 text-center cursor-pointer font-bold text-xl ">
-              <h1>Description</h1>
-            </div>
-            <div className="w-1/2 text-center cursor-pointer font-bold text-xl">
               <h1
                 onClick={() => {
-                  navigate("/Details");
+                  navigate("/PhoneSpec");
                 }}
               >
-                Specification
+                Description
               </h1>
+            </div>
+            <div className="w-1/2 text-center cursor-pointer font-bold text-xl">
+              <h1>Specification</h1>
             </div>
           </div>
 
           {/* Third Col */}
           <div className="w-full flex-col p-2 rounded-[0.5rem] mt-5 pb-[5rem] border-2 border-black">
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
+            <div className="flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
+              <div className="lg:w-[40%] text-[#07844C] text-md font-bold ">
+                NETWORK
+              </div>
+              <div className="flex-col w-full">
+                <div className="flex w-full ">
+                  <h3 className="w-1/3 text-sm font-bold">Technology</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    GSM/ CDMA / HSPA / EVDO/ LTE/ 5G
+                  </label>
+                  <br />
+                </div>
+              </div>
             </div>
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
+            <div className="flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
+              <div className="lg:w-[40%] text-[#07844C] text-md font-bold  ">
+                LUNCH
+              </div>
+              <div className="flex-col w-full">
+                <div className="flex w-full border-black border-b-[0.03rem]">
+                  <h3 className="w-1/3 text-sm font-bold">Announced</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    2021, MACRH 29
+                  </label>{" "}
+                  <br />
+                </div>
+                <div className=" flex w-full">
+                  <h3 className="w-1/3 text-sm font-bold">Status</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    Available Released 2021, April 02
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
+            <div className="flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
+              <div className="lg:w-[40%] text-[#07844C] text-md font-bold  ">
+                BODY
+              </div>
+              <div className="flex-col w-full">
+                <div className="flex w-full border-black border-b-[0.03rem] ">
+                  <h3 className="w-1/3 text-sm font-bold">Diemension</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    164 x 74.6 x 8.5 mm ( 6.47 x 2.94 x 0.33 in )
+                  </label>
+                  <br />
+                </div>
+                <div className=" flex w-full border-black border-b-[0.03rem]">
+                  <h3 className="w-1/3 text-sm font-bold ">Weight</h3>
+                  <label
+                    htmlFor=""
+                    className="text-sm font-medium ml-[-1rem] lg:ml-0"
+                  >
+                    208g ( 7.34 oz )
+                  </label>
+                </div>
+                <div className=" flex w-full border-black border-b-[0.03rem]">
+                  <h3 className="w-1/3 text-sm font-bold">SIM</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    Dual SIM ( Nano_ SIM, Dual Stand By ) IP68 <br />
+                    Dust water Resiistant ( up to 1.5m For 30Min)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className=" flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
+              <div className="lg:w-[40%] text-[#07844C] text-md font-bold  ">
+                BODY
+              </div>
+              <div className="flex-col w-full">
+                <div className="flex w-full border-black border-b-[0.03rem] ">
+                  <h3 className="w-1/3 text-sm font-bold">Diemension</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    164 x 74.6 x 8.5 mm ( 6.47 x 2.94 x 0.33 in )
+                  </label>
+                  <br />
+                </div>
+                <div className=" flex w-full border-black border-b-[0.03rem]">
+                  <h3 className="w-1/3 text-sm font-bold">Weight</h3>
+                  <label className="text-sm font-medium ml-[-1rem] lg:ml-0">
+                    208g ( 7.34 oz )
+                  </label>
+                </div>
+                <div className=" flex w-full border-black border-b-[0.03rem]">
+                  <h3 className="w-1/3 text-sm font-bold">SIM</h3>
+                  <label htmlFor="" className="text-sm font-medium">
+                    Dual SIM ( Nano_ SIM, Dual Stand By ) IP68 <br />
+                    Dust water Resiistant ( up to 1.5m For 30Min)
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -215,4 +273,4 @@ const SmartPhoneDetailDesc = () => {
   );
 };
 
-export default SmartPhoneDetailDesc;
+export default SmartPhoneDetailSpec;
