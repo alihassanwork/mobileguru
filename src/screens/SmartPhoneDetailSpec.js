@@ -159,7 +159,7 @@ const SmartPhoneDetailSpec = () => {
             <div className="w-1/2 text-center cursor-pointer font-bold text-xl ">
               <h1
                 onClick={() => {
-                  navigate("/PhoneSpec");
+                  navigate("/phoneDescription");
                 }}
               >
                 Description

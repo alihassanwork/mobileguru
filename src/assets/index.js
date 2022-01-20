@@ -13,9 +13,32 @@ import ChatIcon from "../assets/images/chat.svg";
 import phoneIcon from "../assets/images/mobile.svg";
 import starIcon from "../assets/images/Star.svg";
 import OppoPhoneRed from "../assets/images/oppoPhoneRed.png";
+import HeartIcon from "../assets/images/heartImage.png";
+import Infinix from "../assets/images/InfinixPhone.png";
+import IphoneRed from "../assets/images/IphoneRedPhone.png";
+import IphoneYellow from "../assets/images/iphoneYellowPhone.jpeg";
+import Nokia from "../assets/images/Nokiaphone.jpeg";
+import Oppo from "../assets/images/oppoPhone.jpg";
+import samsung from "../assets/images/samsungPhone.png";
+import VideoImg from "../assets/images/VideoImage .png";
+import newsBanner from "../assets/images/newsBanner.png";
+import reviewImage1 from "../assets/images/reviewImage1.png";
+import reviewImage2 from "../assets/images/reviewImage2.png";
+import reviewImage3 from "../assets/images/reviewImage3.png";
+import reviewImage4 from "../assets/images/reviewImage4.png";
+import reviewImage5 from "../assets/images/reviewImage5.png";
+import reviewImage6 from "../assets/images/reviewImage6.png";
+import reviewImage7 from "../assets/images/reviewImage7.png";
+import reviewImage8 from "../assets/images/reviewImage8.png";
 
 export const images = {
+  Infinix,
+  IphoneRed,
+  IphoneYellow,
   websiteLogo,
+  Oppo,
+  Nokia,
+  samsung,
   headerRightSideImage,
   oppo15pro,
   BannerImg1,
@@ -30,4 +53,15 @@ export const images = {
   carouselImage,
   starIcon,
   OppoPhoneRed,
+  HeartIcon,
+  VideoImg,
+  newsBanner,
+  reviewImage1,
+  reviewImage2,
+  reviewImage3,
+  reviewImage4,
+  reviewImage5,
+  reviewImage6,
+  reviewImage7,
+  reviewImage8,
 };
