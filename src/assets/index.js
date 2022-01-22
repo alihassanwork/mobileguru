@@ -30,8 +30,20 @@ import reviewImage5 from "../assets/images/reviewImage5.png";
 import reviewImage6 from "../assets/images/reviewImage6.png";
 import reviewImage7 from "../assets/images/reviewImage7.png";
 import reviewImage8 from "../assets/images/reviewImage8.png";
+import charger from "../assets/images/charger.png";
+import handfree from "../assets/images/handfree.png";
+import battery from "../assets/images/Battery.png";
+import mobilecover from "../assets/images/mobileCover.png";
+import protector from "../assets/images/protector.png";
+import mobileBoard from "../assets/images/MobileBoard.png";
 
 export const images = {
+  charger,
+  handfree,
+  battery,
+  mobilecover,
+  protector,
+  mobileBoard,
   Infinix,
   IphoneRed,
   IphoneYellow,

@@ -91,63 +91,46 @@ const leftMenu = [
   },
 ];
 
-const mobilelistData = [
+const mobileAcessories = [
   {
-    imgsrc: "OppoPhoneRed",
+    imgsrc: "charger",
     mobilename: "Oppo F19",
     price: "$23.40",
     rating: "4.5",
   },
   {
-    imgsrc: "IphoneRed",
+    imgsrc: "handfree",
     mobilename: "Iphone 11",
-    price: "$423.40",
+    price: "$3.40",
     rating: "4.5",
   },
   {
-    imgsrc: "samsung",
+    imgsrc: "battery",
     mobilename: "Samsung A12",
-    price: "$123.40",
+    price: "$13.40",
     rating: "4.5",
   },
   {
-    imgsrc: "Oppo",
+    imgsrc: "mobilecover",
     mobilename: "Oppo F19",
-    price: "$23.40",
+    price: "$3.40",
     rating: "4.5",
   },
   {
-    imgsrc: "Nokia",
+    imgsrc: "protector",
     mobilename: "Nokia 10.0",
     price: "$93.40",
     rating: "4.5",
   },
   {
-    imgsrc: "IphoneYellow",
+    imgsrc: "mobileBoard",
     mobilename: "Iphone 11",
-    price: "$323.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Oppo",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Infinix",
-    mobilename: "infinix hote 10",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneRed",
-    mobilename: "Iphone 12",
-    price: "$623.40",
+    price: "$33.40",
     rating: "4.5",
   },
 ];
-const MobileListView = () => {
+
+const MobileAcessories = () => {
   let navigate = useNavigate();
   return (
     <React.Fragment>
@@ -190,29 +173,23 @@ const MobileListView = () => {
         {/* cards  */}
         <div className="lg:w-[60%] h-full  pb-0 lg:pb-[20rem]  flex flex-col mt-[-2rem] lg:mt-0 lg:ml-4 lg:mr-4   order-1 lg:order-2  ">
           <div className="flex mb-5 text-md pl-5 pr-5 lg:pl-0 lg:pr-0 font-semibold mt-8">
-            <h3 className="mr-auto ">Used Mobile </h3>
-            <h3
-              className="ml-auto cursor-pointer"
-              onClick={() => {
-                navigate("/UploadAd");
-              }}
-            >
-              Sell Your Mobile
-            </h3>
+            <h3 className="mr-auto ">Mobile Acessories </h3>
           </div>
           <div className="lg:pl-4 lg:pr-4 rounded-md bg-center bg-[#D2DCE7] ">
             <div className="flex-1  p-4 pl-1 pr-1 ">
               <div className="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 gap-2 gap-y-6">
-                {mobilelistData.map(({ imgsrc, mobilename, price, rating }) => {
-                  return (
-                    <MobilelistCard
-                      imgsrc={imgsrc}
-                      mobilename={mobilename}
-                      price={price}
-                      rating={rating}
-                    />
-                  );
-                })}
+                {mobileAcessories.map(
+                  ({ imgsrc, mobilename, price, rating }) => {
+                    return (
+                      <MobilelistCard
+                        imgsrc={imgsrc}
+                        mobilename={mobilename}
+                        price={price}
+                        rating={rating}
+                      />
+                    );
+                  }
+                )}
               </div>
             </div>
           </div>
@@ -248,4 +225,4 @@ const MobileListView = () => {
   );
 };
 
-export default MobileListView;
+export default MobileAcessories;

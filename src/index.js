@@ -14,6 +14,8 @@ import {
   News,
   Reviews,
   ContactUs,
+  MobileAcessories,
+  Comparison,
 } from "screens";
 
 ReactDOM.render(
@@ -31,6 +33,8 @@ ReactDOM.render(
           <Route path="/News" element={<News />} />
           <Route path="/Review" element={<Reviews />} />
           <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/acessories" element={<MobileAcessories />} />
+          <Route path="/Comparison" element={<Comparison />} />
         </Route>
       </Routes>
     </Router>
