@@ -36,9 +36,13 @@ import battery from "../assets/images/Battery.png";
 import mobilecover from "../assets/images/mobileCover.png";
 import protector from "../assets/images/protector.png";
 import mobileBoard from "../assets/images/MobileBoard.png";
+import leftArrow from "../assets/images/left-arrow.svg";
+import rightArrow from "../assets/images/right-arrow.svg";
 
 export const images = {
   charger,
+  leftArrow,
+  rightArrow,
   handfree,
   battery,
   mobilecover,

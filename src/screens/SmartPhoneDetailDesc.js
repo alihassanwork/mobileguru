@@ -1,6 +1,7 @@
 import React from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
 import { useNavigate } from "react-router";
+import Slider from "react-slick";
 
 const leftMenu = [
   {
@@ -37,9 +38,51 @@ const leftMenu = [
     ],
   },
 ];
+const sliderData = [
+  {
+    imageName: "carouselImage",
+  },
+  {
+    imageName: "OppoPhoneRed",
+  },
+  {
+    imageName: "Infinix",
+  },
+];
 
 const SmartPhoneDetailDesc = () => {
+  const SlickArrowLeft = ({ currentSlide, slideCount, imgsrc, ...props }) => (
+    <div className=" bg-white rounded-full w-fit p-2 ">
+      <ImageAsset
+        alt="prevArrow"
+        {...props}
+        className="  h-[1rem]"
+        src={imgsrc}
+      />
+    </div>
+  );
+
+  const SlickArrowRight = ({ currentSlide, slideCount, imgsrc, ...props }) => (
+    <div className=" bg-white rounded-full w-fit p-2">
+      <ImageAsset
+        alt="prevArrow"
+        {...props}
+        className="  h-[1rem]"
+        src={imgsrc}
+      />
+    </div>
+  );
   let navigate = useNavigate();
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
+    // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
+  };
   return (
     <React.Fragment>
       <Navbar />
@@ -56,10 +99,22 @@ const SmartPhoneDetailDesc = () => {
           <div className="border-2 border-black rounded-[0.2rem] p-[1rem] lg:pb-[3rem] flex-col mt-5 w-full">
             <div className="flex flex-col  lg:flex-row">
               <div className=" w-full lg:w-1/4 h-[15rem] lg:h-[20rem]  ">
-                <ImageAsset
-                  className=" object-top p-2  h-[15rem]"
-                  src="carouselImage"
-                />
+                {/* carousel start */}
+                <div className="pl-8 pr-8">
+                  <Slider {...settings}>
+                    {sliderData.map(({ imageName }) => {
+                      return (
+                        <div>
+                          <ImageAsset
+                            className=" object-top p-2  h-[15rem]"
+                            src={imageName}
+                          />
+                        </div>
+                      );
+                    })}
+                  </Slider>
+                </div>
+                {/* carousel ends  */}
               </div>
               <div className="w-full lg:w-1/3 flex-col text-sm lg:mt-[3rem] justify-center h-[10rem]  space-y-5 ">
                 <div className="flex ">

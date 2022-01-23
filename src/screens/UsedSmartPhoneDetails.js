@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
+import Slider from "react-slick";
 
 const leftMenu = [
   {
@@ -36,8 +37,28 @@ const leftMenu = [
     ],
   },
 ];
+const sliderData = [
+  {
+    imageName: "carouselImage",
+  },
+  {
+    imageName: "OppoPhoneRed",
+  },
+  {
+    imageName: "Infinix",
+  },
+];
 
 const UsedSmartPhoneDetails = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
+    // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
+  };
   return (
     <React.Fragment>
       <Navbar />
@@ -53,10 +74,21 @@ const UsedSmartPhoneDetails = () => {
           {/* First Coloum */}
           <div className="border-2 border-black rounded-[0.2rem] p-[1rem] lg:pb-[3rem] flex-col mt-5 w-full">
             <div className="flex flex-col justify-center  lg:flex-row">
-              <ImageAsset
-                className=" object-top p-2  h-[20rem]"
-                src="carouselImage"
-              />
+              {/* carousel start */}
+              <div className=" w-full pl-8 pr-8">
+                <Slider {...settings}>
+                  {sliderData.map(({ imageName }) => {
+                    return (
+                      <div className="flex">
+                        <div className="flex  justify-center">
+                          <ImageAsset className="h-[15rem]" src={imageName} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </div>
+              {/* carousel ends  */}
             </div>
           </div>
 
