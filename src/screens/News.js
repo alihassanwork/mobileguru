@@ -1,52 +1,6 @@
 import React from "react";
-import { FilterCard, Footer, ImageAsset, Navbar, NewsCard } from "components";
-
-const rightMenu = [
-  {
-    title: "Price",
-    heading: "Less Then One 10000",
-    description: ["10000 To 20000", "20000 To 30000", "30000 To 40000"],
-  },
-  {
-    title: "RAM",
-    heading: "Less Then 1 GB",
-    description: ["1 GB to 2 GB", "2 GB to 3 GB", "3 GB to 4 GB"],
-  },
-  {
-    title: "Memory",
-    heading: "Less Then 16 GB",
-    description: ["16 GB To 32 GB", "32 GB To 64 GB", "64 GB To 128 GB"],
-  },
-  {
-    title: "Display",
-    heading: "Less Then 4 Inches",
-    description: [
-      "4.1 Inches To 5.0 Inches",
-      "5.1 Inches To 6 Inches",
-      "6.1 Inches To 7 Inches",
-    ],
-  },
-  {
-    title: "OS",
-    heading: "",
-    description: ["Andriod", "IOS", "Symbion", "Windows"],
-  },
-  {
-    title: "Camera",
-    heading: "Less Then 8 MP",
-    description: ["8 MP To 16 MP", "16 MP To 32 M", "32 MP To 64 MP"],
-  },
-  {
-    title: "Selfi Camera",
-    heading: "Less Then 8 MP",
-    description: ["8 MP To 16 MP", "16 MP To 32 MP", "32 MP To 64 MP"],
-  },
-  {
-    title: "Battery",
-    heading: "Less Then 4000 MAH",
-    description: ["4000 MAH To 4500 MAH", "4500 MAH To 5000 MAH"],
-  },
-];
+import { Footer, Navbar, NewsCard } from "components";
+import { RightSideMenu } from "megaComponents";
 
 const NewsCardData = [
   {
@@ -104,7 +58,7 @@ const News = () => {
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>
-
+          {/* 
           {rightMenu.map(({ title, heading, description }) => {
             return (
               <FilterCard title={title} heading={heading}>
@@ -113,7 +67,9 @@ const News = () => {
                 })}
               </FilterCard>
             );
-          })}
+          })} */}
+
+          <RightSideMenu />
         </div>
 
         <div className="w-full lg:w-[80%] order-1 h-full  pb-0 lg:pb-[20rem]  flex flex-col lg:pl-7 lg:pr-7 mt-[-2rem]  lg:ml-3 lg:mr-3 lg:mt-0  lg:order-2 bg-center ">

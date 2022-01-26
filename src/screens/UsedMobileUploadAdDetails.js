@@ -129,7 +129,7 @@ const UsedMobileUploadAdDetails = () => {
           })}
         </div>
 
-        <div className="lg:w-[60%] rounded-lg h-full  pb-0 lg:pb-[5rem]  flex flex-col pl-7 lg:ml-4 lg:mr-4 pr-7 mt-10 mt-[-2rem] lg:mt-0  order-1 lg:order-2 bg-center  bg-[url('assets/images/backgroundImageMainScreen.png')]">
+        <div className="lg:w-[60%] rounded-lg h-full  pb-0 lg:pb-[5rem]  flex flex-col pl-7 lg:ml-4 lg:mr-4 pr-7 mt-10 lg:mt-0  order-1 lg:order-2 bg-cover  bg-[url('assets/images/backgroundImageMainScreen.png')]">
           <div className="flex flex-col  lg:flex-row">
             <ImageAsset
               className=" object-top p-2  h-[20rem]"
@@ -137,7 +137,7 @@ const UsedMobileUploadAdDetails = () => {
             />
           </div>
           <div className="flex-col mb-10 w-full">
-            <button className=" lg:ml-16 p-3  pl-8 pr-8 text-xs border-black border-[0.03rem] rounded-lg">
+            <button className=" lg:ml-16 p-3  pl-8 pr-8 text-xs border-black border rounded-lg">
               {" "}
               Upload Image{" "}
             </button>

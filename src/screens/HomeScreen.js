@@ -1,59 +1,6 @@
 import React from "react";
-import {
-  FilterCard,
-  Footer,
-  ImageAsset,
-  FilterMobileCard,
-  Navbar,
-  MobileBrandCard,
-} from "components";
-
-const rightMenu = [
-  {
-    title: "Price",
-    heading: "Less Then One 10000",
-    description: ["10000 To 20000", "20000 To 30000", "30000 To 40000"],
-  },
-  {
-    title: "RAM",
-    heading: "Less Then 1 GB",
-    description: ["1 GB to 2 GB", "2 GB to 3 GB", "3 GB to 4 GB"],
-  },
-  {
-    title: "Memory",
-    heading: "Less Then 16 GB",
-    description: ["16 GB To 32 GB", "32 GB To 64 GB", "64 GB To 128 GB"],
-  },
-  {
-    title: "Display",
-    heading: "Less Then 4 Inches",
-    description: [
-      "4.1 Inches To 5.0 Inches",
-      "5.1 Inches To 6 Inches",
-      "6.1 Inches To 7 Inches",
-    ],
-  },
-  {
-    title: "OS",
-    heading: "",
-    description: ["Andriod", "IOS", "Symbion", "Windows"],
-  },
-  {
-    title: "Camera",
-    heading: "Less Then 8 MP",
-    description: ["8 MP To 16 MP", "16 MP To 32 M", "32 MP To 64 MP"],
-  },
-  {
-    title: "Selfi Camera",
-    heading: "Less Then 8 MP",
-    description: ["8 MP To 16 MP", "16 MP To 32 MP", "32 MP To 64 MP"],
-  },
-  {
-    title: "Battery",
-    heading: "Less Then 4000 MAH",
-    description: ["4000 MAH To 4500 MAH", "4500 MAH To 5000 MAH"],
-  },
-];
+import { Footer, ImageAsset, Navbar, MobileBrandsNames } from "components";
+import { RightSideMenu, LeftSideMenu } from "megaComponents";
 
 const leftMenu = [
   {
@@ -108,38 +55,8 @@ const Home = () => {
       <Navbar />
       <div className="mainContent mt-20 flex flex-col lg:flex-row px-10">
         <div className="lg:w-[20%] ">
-          <div className="card rounded-tl-[4rem]  rounded-b-[4rem] bg-backgroundGreenColor w-full">
-            <div className="cardRow w-full text-center pt-5 pb-5 text-white">
-              <h1>Mobile Brands Names</h1>
-            </div>
-            <div className="w-full border-b border-white mr-2  "></div>
-            <div className="flex text-sm pl-3 pr-3">
-              <div className="w-[33%] space-y-5 mt-5 pb-[8rem] text-white">
-                <h2>Apple </h2>
-                <h2>Samsung</h2>
-                <h2>Infinix</h2>
-                <h2>Realme </h2>
-              </div>
-              <div className="border-l border-white mr-2 "></div>
-              <div className="w-[33%] space-y-5 text-white mt-5">
-                <h2>Apple </h2>
-                <h2>Samsung</h2>
-                <h2>Infinix</h2>
-                <h2>Realme </h2>
-              </div>
-              <div className="border-l border-white mr-2 "></div>
-              <div className="w-[33%] space-y-5 text-white mt-5">
-                <h2>Apple </h2>
-                <h2>Samsung</h2>
-                <h2>Infinix</h2>
-                <h2>Realme </h2>
-              </div>
-            </div>
-          </div>
-
-          {leftMenu.map(({ title, products }) => {
-            return <FilterMobileCard title={title} products={products} />;
-          })}
+          <MobileBrandsNames />
+          <LeftSideMenu />
         </div>
 
         <div className="lg:w-[60%] h-full  pb-0 lg:pb-[20rem]  flex flex-col pl-7 pr-7 mt-10 lg:mt-0  order-3 lg:order-2 bg-center  bg-[url('assets/images/backgroundImageMainScreen.png')]">
@@ -191,15 +108,7 @@ const Home = () => {
             </button>
           </div>
 
-          {rightMenu.map(({ title, heading, description }) => {
-            return (
-              <FilterCard title={title} heading={heading}>
-                {description.map((item) => {
-                  return <h1>{item}</h1>;
-                })}
-              </FilterCard>
-            );
-          })}
+          <RightSideMenu />
         </div>
       </div>
       <div className="mt-[10rem]">
