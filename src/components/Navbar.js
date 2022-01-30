@@ -1,5 +1,8 @@
 import React from "react";
 import ImageAsset from "./ImageAsset";
+import { FaStar } from "react-icons/fa";
+
+import { IoCloseOutline } from "react-icons/io5";
 
 const Navbar = () => {
   return (
@@ -29,8 +32,8 @@ const Navbar = () => {
               placeholder="search"
             />
 
-            <button className="pointer-events-none w-8 h-8 absolute top-9 transform -translate-y-1/2 right-12">
-              Close
+            <button className="pointer-events-none cursor-pointer w-8 h-8 absolute top-9 transform -translate-y-1/2 right-4 ">
+              <IoCloseOutline className="w-full  h-full" />
             </button>
           </div>
         </div>
