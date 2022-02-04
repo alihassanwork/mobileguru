@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageAsset } from "components";
-import { FaStar } from "react-icons/fa";
+import { FaStar ,GrFormClose } from "react-icons/fa";
 
 const MobilelistCard = (props) => {
   const { imgsrc, mobilename, price, rating } = props;
