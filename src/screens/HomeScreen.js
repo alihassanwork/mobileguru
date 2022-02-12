@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <div className="mainContent mt-20 flex flex-col lg:flex-row px-10">
+      <div className="mainContent mt-5 lg:mt-20 flex flex-col lg:flex-row px-10">
         <div className="lg:w-[20%] ">
           <MobileBrandsNames />
           <LeftSideMenu />

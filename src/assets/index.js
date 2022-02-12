@@ -38,8 +38,12 @@ import protector from "../assets/images/protector.png";
 import mobileBoard from "../assets/images/MobileBoard.png";
 import leftArrow from "../assets/images/left-arrow.svg";
 import rightArrow from "../assets/images/right-arrow.svg";
+import menuIcon from "../assets/images/menuIcons.svg";
+import menuSvgIcon from "../assets/images/menuGifIcon.gif";
 
 export const images = {
+  menuIcon,
+  menuSvgIcon,
   charger,
   leftArrow,
   rightArrow,

@@ -8,22 +8,22 @@ const MobileBrandsNames = () => {
           <h1>Mobile Brands Names</h1>
         </div>
         <div className="w-full border-b border-white mr-2  "></div>
-        <div className="flex text-sm pl-3 pr-3">
-          <div className="w-[33%] space-y-5 mt-5 pb-[8rem] text-white">
+        <div className="flex text-xs lg:text-sm pl-3 pr-3">
+          <div className="w-[33%] space-y-5 mt-2 lg:mt-5  pb-[2.5rem]  lg:pb-[8rem] text-white">
+            <h2>Apple </h2>
+            <h2>Samsung</h2>
+            <h2>Infinix</h2>
+            <h2>Realme </h2>
+          </div>
+          <div className="border-l  border-white mr-2 "></div>
+          <div className="w-[33%] space-y-5 text-white mt-2 lg:mt-5">
             <h2>Apple </h2>
             <h2>Samsung</h2>
             <h2>Infinix</h2>
             <h2>Realme </h2>
           </div>
           <div className="border-l border-white mr-2 "></div>
-          <div className="w-[33%] space-y-5 text-white mt-5">
-            <h2>Apple </h2>
-            <h2>Samsung</h2>
-            <h2>Infinix</h2>
-            <h2>Realme </h2>
-          </div>
-          <div className="border-l border-white mr-2 "></div>
-          <div className="w-[33%] space-y-5 text-white mt-5">
+          <div className="w-[33%] mt-2 lg:mt-5 space-y-5 text-white">
             <h2>Apple </h2>
             <h2>Samsung</h2>
             <h2>Infinix</h2>
