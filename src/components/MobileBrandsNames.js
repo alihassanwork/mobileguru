@@ -3,7 +3,7 @@ import React from "react";
 const MobileBrandsNames = () => {
   return (
     <>
-      <div className="card rounded-tl-[4rem] mt-12 lg:mt-0  rounded-b-[4rem] bg-backgroundGreenColor w-full">
+      <div className="card rounded-tl-[4rem] mt-6 lg:mt-0  rounded-b-[4rem] bg-backgroundGreenColor w-full">
         <div className="cardRow w-full text-center pt-5 pb-5 text-white">
           <h1>Mobile Brands Names</h1>
         </div>
