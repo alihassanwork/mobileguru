@@ -5,7 +5,7 @@ const ReviewCard = (props) => {
   const { imgsrc, title, desc, date } = props;
   return (
     <React.Fragment>
-      <div className="flex-col w-full shadow-2xl pb-3 bg-[#F2F2F2]">
+      <div className="flex-col w-full shadow-md md:shadow-2xl pb-3 bg-[#F2F2F2]">
         <ImageAsset className="w-full  h-[10rem] " src={imgsrc} />
         <div className="pl-3">
           <h1 className="mt-2 text-md font-semibold">{title}</h1>
