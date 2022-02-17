@@ -17,20 +17,20 @@ const Comparison = () => {
               </div>
               <div className="w-full lg:w-[70%] text-xs pb-3 font-medium mt-[0.4rem] lg:ml-1 flex flex-col justify-centerc text-center border-2 rounded-md border-black">
                 <ImageAsset
-                  className=" object-top p-2  h-[20rem]"
+                  className=" object-top p-2  object-contain h-[20rem]"
                   src="carouselImage"
                 />
                 <h3>oppo f9</h3>
                 <h3>Rs 50000</h3>
-                <div className="flex w-full justify-center">
+                <div className="flex w-full  justify-center">
                   <ImageAsset
-                    className="w-[2.6rem] h-[2.6rem]   "
+                    className="w-[2.6rem] object-contain  h-[2.6rem]   "
                     src="phoneIcon"
                   />
                 </div>
                 <h3>Relesed 2021, Apr</h3>
               </div>
-              <div className="pl-2 mt-5 mb-5">
+              <div className="pl-2 mt-5 flex justify-center md:justify-start mb-5">
                 <button className="rounded-2xl text-center p-[0.3rem] text-lg font-bold w-[70%]  bg-white">
                   Specification
                 </button>
@@ -139,14 +139,14 @@ const Comparison = () => {
               </div>
               <div className="w-full lg:w-[70%] text-xs pb-3 font-medium mt-[0.4rem] lg:ml-1 flex flex-col justify-centerc text-center border-2 rounded-md border-black">
                 <ImageAsset
-                  className=" object-top p-2  h-[20rem]"
+                  className=" object-top p-2 object-contain  h-[20rem]"
                   src="IphoneRed"
                 />
                 <h3>oppo f9</h3>
                 <h3>Rs 50000</h3>
                 <div className="flex w-full justify-center">
                   <ImageAsset
-                    className="w-[2.6rem] h-[2.6rem]   "
+                    className="w-[2.6rem] object-contain h-[2.6rem]   "
                     src="phoneIcon"
                   />
                 </div>

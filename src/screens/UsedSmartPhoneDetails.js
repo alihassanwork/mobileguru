@@ -70,7 +70,7 @@ const UsedSmartPhoneDetails = () => {
           })}
         </div>
 
-        <div className="w-full lg:w-[80%] h-full order-1 lg:order-2  pb-[20rem] bg-[#b0c2d6]  flex flex-col pl-2 pr-2 lg:mt-5 lg:m-5 rounded-[0.2rem] ">
+        <div className="w-full lg:w-[80%] h-full order-1 lg:order-2  pb-[2rem] bg-[#b0c2d6]  flex flex-col pl-2 pr-2 lg:mt-5 lg:m-5 rounded-[0.2rem] ">
           {/* First Coloum */}
           <div className="border-2 border-black rounded-[0.2rem] p-[1rem] lg:pb-[3rem] flex-col mt-5 w-full">
             <div className="flex flex-col justify-center  lg:flex-row">
