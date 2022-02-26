@@ -23,6 +23,17 @@ const PhoneDetails = [
   },
 ];
 
+const MobileList = [
+  {
+    value: "New Mobiles",
+    hrefLink: "/MobileList",
+  },
+  {
+    value: "Old Mobiles",
+    hrefLink: "/MobileList",
+  },
+];
+
 const Acessories = [
   {
     value: "Comparisons",
@@ -121,16 +132,46 @@ const Navbar = () => {
                     </div>
                   </div>
                 </li>
-                <li>
-                  <button
-                    class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
-                    onClick={() => {
-                      navigate("/MobileList");
-                    }}
-                  >
-                    <span class="mr-1">Mobile List</span>
-                  </button>
-                </li>{" "}
+                <li class="z-10 mt-0">
+                  <div>
+                    <div class="group inline-block relative">
+                      <button class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                        <span
+                          class="mr-1"
+                          onClick={() => {
+                            navigate("/MobileList");
+                          }}
+                        >
+                          Mobile List
+                        </span>
+                        <svg
+                          class="fill-current h-4 w-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </button>
+                      <ul class="lg:absolute  hidden text-gray-700 pt-1 group-hover:block">
+                        {MobileList.map(({ hrefLink, value }) => {
+                          return (
+                            <li>
+                              <span
+                                className=" bg-gray-200 hover:bg-gray-400 py-2 px-4 lg:w-[11.5rem] block whitespace-no-wrap"
+                                onClick={() => {
+                                  navigate(hrefLink);
+                                }}
+                              >
+                                {value}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
                 <li class=" z-10">
                   <div>
                     <div class="group inline-block relative">

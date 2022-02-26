@@ -14,7 +14,7 @@ const FilterMobileCard = (props) => {
           <div className=" flex flex-parent gap-x-[1rem] justify-center pl-2 pr-1 mt-5">
             {products.slice(0, 3).map(({ name, src }) => {
               return (
-                <div className="flex-item">
+                <div className="flex-item cursor-pointer">
                   <div className="flex flex-col w-full text-xs text-white">
                     <ImageAsset
                       className="w-full h-[5rem] md:h-[4rem] "
@@ -26,10 +26,10 @@ const FilterMobileCard = (props) => {
               );
             })}
           </div>
-          <div className=" flex flex-parent gap-x-[1rem] justify-center pl-2 pr-1 mt-5">
+          <div className=" flex flex-parent gap-x-[1rem] justify-center pl-2 pr-1 mt-5 ">
             {products.slice(3, 6).map(({ name, src }) => {
               return (
-                <div className="flex-item">
+                <div className="flex-item ">
                   <div className="flex flex-col w-full text-xs text-white">
                     <ImageAsset
                       className="w-full h-[5rem] md:h-[4rem] "

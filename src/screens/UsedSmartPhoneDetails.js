@@ -1,7 +1,7 @@
 import React from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
 import Slider from "react-slick";
-
+import { useNavigate } from "react-router-dom";
 const leftMenu = [
   {
     title: "Latest Mobiles",
@@ -50,6 +50,7 @@ const sliderData = [
 ];
 
 const UsedSmartPhoneDetails = () => {
+  const navigate = useNavigate();
   const settings = {
     dots: false,
     infinite: true,

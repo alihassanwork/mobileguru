@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
 import { useNavigate } from "react-router";
 import Slider from "react-slick";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getMobileById } from "../redux/actions/mobileActions";
+import { baseURL } from "api/baseURL";
 const leftMenu = [
   {
     title: "Latest Mobiles",
@@ -51,6 +53,12 @@ const sliderData = [
 ];
 
 const SmartPhoneDetailDesc = () => {
+  const { singleMobile } = useSelector((state) => state.mobileReducer);
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleFetchMobileById = (value) => dispatch(getMobileById(value));
+
   const SlickArrowLeft = ({ currentSlide, slideCount, imgsrc, ...props }) => (
     <div className=" bg-white rounded-full w-fit p-2 ">
       <ImageAsset
@@ -72,8 +80,17 @@ const SmartPhoneDetailDesc = () => {
       />
     </div>
   );
-  let navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("Hello");
+    if (Object.keys(singleMobile).length === 0) {
+      console.log("hello 2");
+      const id = localStorage.getItem("detailId");
+      handleFetchMobileById(id);
+    } else {
+      return;
+    }
+  }, [singleMobile, handleFetchMobileById]);
   const settings = {
     dots: false,
     infinite: true,
@@ -83,6 +100,7 @@ const SmartPhoneDetailDesc = () => {
     // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
     // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
   };
+  console.log("single==>", singleMobile);
   return (
     <React.Fragment>
       <Navbar />
@@ -102,16 +120,19 @@ const SmartPhoneDetailDesc = () => {
                 {/* carousel start */}
                 <div className="pl-8 pr-8">
                   <Slider {...settings}>
-                    {sliderData.map(({ imageName }) => {
-                      return (
-                        <div>
-                          <ImageAsset
-                            className=" object-top p-2  h-[15rem]"
-                            src={imageName}
-                          />
-                        </div>
-                      );
-                    })}
+                    {Object.keys(singleMobile).length !== 0
+                      ? singleMobile.mobilePhotos.map((imageName) => {
+                          return (
+                            <div>
+                              <img
+                                className=" object-top p-2  h-[15rem]"
+                                src={`${baseURL}${imageName}`}
+                                alt={`${singleMobile.brandName}`}
+                              />
+                            </div>
+                          );
+                        })
+                      : null}
                   </Slider>
                 </div>
                 {/* carousel ends  */}
@@ -122,28 +143,51 @@ const SmartPhoneDetailDesc = () => {
                     className="w-[1.6rem] h-[1.6rem] "
                     src="ChatIcon"
                   />
-                  <h1 className="ml-3">Relesed 2021, April</h1>
+                  <h1 className="ml-3">
+                    <strong>Relase Date </strong>{" "}
+                    {singleMobile ? singleMobile.releaseDate : ""}
+                  </h1>
                 </div>
                 <div className="flex ">
                   <ImageAsset
                     className="w-[1.6rem] h-[1.6rem]  "
                     src="phoneIcon"
                   />
-                  <h1 className="ml-3">Relesed 2021, April</h1>
+                  <h1 className="ml-3">
+                    <strong>Mobile </strong>
+                    {singleMobile ? singleMobile.brandName : ""}{" "}
+                    {(" ", singleMobile ? singleMobile.modelNumber : "")}
+                  </h1>
                 </div>
                 <div className="flex ">
                   <ImageAsset
                     className="w-[1.6rem] h-[1.6rem]  "
                     src="ChatIcon"
                   />
-                  <h1 className="ml-3">Relesed 2021, April</h1>
+                  <h1 className="ml-3">
+                    <strong>RAM </strong>
+                    {Object.keys(singleMobile).length !== 0
+                      ? singleMobile.memory.ram.value
+                      : ""}
+                    {Object.keys(singleMobile).length !== 0
+                      ? singleMobile.memory.ram.unit
+                      : ""}
+                  </h1>
                 </div>
                 <div className="flex ">
                   <ImageAsset
                     className="w-[1.6rem] h-[1.6rem]  "
                     src="phoneIcon"
                   />
-                  <h1 className="ml-3">Relesed 2021, April</h1>
+                  <h1 className="ml-3">
+                    <strong>ROM </strong>
+                    {Object.keys(singleMobile).length !== 0
+                      ? singleMobile.memory.rom.value
+                      : ""}
+                    {Object.keys(singleMobile).length !== 0
+                      ? singleMobile.memory.rom.unit
+                      : ""}
+                  </h1>
                 </div>
               </div>
               <div className="flex mt-0 lg:mt-[3rem] h-[10rem] items-center justify-center lg:w-1/3 ">
@@ -171,6 +215,8 @@ const SmartPhoneDetailDesc = () => {
               </div>
             </div>
             <div>
+              {/*
+              
               <div className="flex w-full  justify-center   lg:mt-[-4rem]  lg:gap-x-16 text-xs">
                 <div>
                   <div className="flex justify-center ">
@@ -206,18 +252,19 @@ const SmartPhoneDetailDesc = () => {
                   </div>
                 </div>
               </div>
+              */}
             </div>
           </div>
 
           {/* second col */}
           <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-2 border-black">
             <div className="w-1/2 text-center cursor-pointer font-bold text-xl ">
-              <h1>Description</h1>
+              <h1 onClick={() => navigate("/phoneDescription")}>Description</h1>
             </div>
             <div className="w-1/2 text-center cursor-pointer font-bold text-xl">
               <h1
                 onClick={() => {
-                  navigate("/PhoneDetails");
+                  navigate("/PhoneSpec");
                 }}
               >
                 Specification
@@ -228,36 +275,12 @@ const SmartPhoneDetailDesc = () => {
           {/* Third Col */}
           <div className="w-full flex-col p-2 rounded-[0.5rem] mt-5 pb-[5rem] border-2 border-black">
             <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
+              <p>{singleMobile.shortDescription}</p>
             </div>
+            <hr className="my-4 text-black" />
             <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
-            </div>
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
+              <p className="flex items-center justify-start flex-wrap">
+                {singleMobile.longDescription}
               </p>
             </div>
           </div>

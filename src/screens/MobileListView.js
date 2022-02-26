@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Footer, MobilelistCard, Navbar, MobileBrandsNames } from "components";
+import { FaBackward, FaForward } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { RightSideMenu, LeftSideMenu } from "megaComponents";
+import { getMobiles } from "../redux/actions/mobileActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const mobilelistData = [
   {
@@ -61,6 +64,18 @@ const mobilelistData = [
 ];
 const MobileListView = () => {
   let navigate = useNavigate();
+  const [pageNo, setPageNumber] = useState(1);
+  //redux
+  const dispatch = useDispatch();
+  const { allMobiles, moreMobile } = useSelector(
+    (state) => state.mobileReducer
+  );
+  const handleFetchMobiles = (page) => dispatch(getMobiles(page));
+  useEffect(() => {
+    console.log("Mobile page===>", allMobiles);
+    handleFetchMobiles(pageNo);
+  }, [pageNo]);
+  console.log("Mobile page===>", allMobiles);
   return (
     <React.Fragment>
       <Navbar />
@@ -86,17 +101,32 @@ const MobileListView = () => {
           <div className="lg:pl-4 lg:pr-4 rounded-md bg-center bg-[#D2DCE7] ">
             <div className="flex-1  p-4 pl-1 pr-1 ">
               <div className="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 gap-2 gap-y-6">
-                {mobilelistData.map(({ imgsrc, mobilename, price, rating }) => {
-                  return (
-                    <MobilelistCard
-                      imgsrc={imgsrc}
-                      mobilename={mobilename}
-                      price={price}
-                      rating={rating}
-                    />
-                  );
+                {allMobiles.map((item) => {
+                  return <MobilelistCard item={item} key={item._id} />;
                 })}
               </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-between my-4">
+            <div>
+              <div
+                onClick={() => setPageNumber((prev) => prev - 1)}
+                className={`cursor-pointer flex items-center justify-start gap-3 py-2 rounded-xl px-4 border-2 bg-green-700 text-white ${
+                  pageNo == 1 ? "hidden" : ""
+                }`}
+              >
+                <FaBackward />
+                <h2>Previous</h2>
+              </div>
+            </div>
+            <div
+              onClick={() => setPageNumber((prev) => prev + 1)}
+              className={`cursor-pointer flex items-center justify-start gap-3 py-2 rounded-xl px-4 border-2 bg-green-700 text-white ${
+                moreMobile ? "" : "hidden"
+              }`}
+            >
+              <h2>Next</h2>
+              <FaForward />
             </div>
           </div>
         </div>

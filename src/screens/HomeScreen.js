@@ -50,6 +50,7 @@ const MobileBrand = [
 ];
 
 const Home = () => {
+  console.log("Ali Hassan");
   return (
     <React.Fragment>
       <Navbar />
