@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ImageAsset from "./ImageAsset";
 import { IoCloseOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { isFilterMobile } from "../redux/actions/mobileActions";
 
 const PhoneDetails = [
   {
@@ -49,6 +51,8 @@ const Acessories = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleIsFilter = (value) => dispatch(isFilterMobile(value));
   return (
     <div className="flex flex-col mb-16 lg:mb-0">
       <div className="flex flex-col lg:flex-row mt-4">
@@ -139,7 +143,12 @@ const Navbar = () => {
                         <span
                           class="mr-1"
                           onClick={() => {
-                            navigate("/MobileList");
+                            navigate("/MobileList", {
+                              state: {
+                                isFilter: false,
+                              },
+                            });
+                            handleIsFilter(false);
                           }}
                         >
                           Mobile List
@@ -155,13 +164,17 @@ const Navbar = () => {
                       <ul class="lg:absolute  hidden text-gray-700 pt-1 group-hover:block">
                         {MobileList.map(({ hrefLink, value }) => {
                           return (
-                            <li>
-                              <span
-                                className=" bg-gray-200 hover:bg-gray-400 py-2 px-4 lg:w-[11.5rem] block whitespace-no-wrap"
-                                onClick={() => {
-                                  navigate(hrefLink);
-                                }}
-                              >
+                            <li
+                              onClick={() => {
+                                navigate(`${hrefLink}`, {
+                                  state: {
+                                    isFilter: false,
+                                  },
+                                });
+                                handleIsFilter(false);
+                              }}
+                            >
+                              <span className=" bg-gray-200 hover:bg-gray-400 py-2 px-4 lg:w-[11.5rem] block whitespace-no-wrap">
                                 {value}
                               </span>
                             </li>

@@ -1,81 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { Footer, MobilelistCard, Navbar, MobileBrandsNames } from "components";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { RightSideMenu, LeftSideMenu } from "megaComponents";
-import { getMobiles } from "../redux/actions/mobileActions";
+import { getMobiles, getMobilesByPrice } from "../redux/actions/mobileActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const mobilelistData = [
-  {
-    imgsrc: "OppoPhoneRed",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneRed",
-    mobilename: "Iphone 11",
-    price: "$423.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "samsung",
-    mobilename: "Samsung A12",
-    price: "$123.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Oppo",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Nokia",
-    mobilename: "Nokia 10.0",
-    price: "$93.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneYellow",
-    mobilename: "Iphone 11",
-    price: "$323.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Oppo",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Infinix",
-    mobilename: "infinix hote 10",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneRed",
-    mobilename: "Iphone 12",
-    price: "$623.40",
-    rating: "4.5",
-  },
-];
 const MobileListView = () => {
   let navigate = useNavigate();
   const [pageNo, setPageNumber] = useState(1);
   //redux
   const dispatch = useDispatch();
-  const { allMobiles, moreMobile } = useSelector(
+  const { allMobiles, moreMobile, isFilter } = useSelector(
     (state) => state.mobileReducer
   );
+
   const handleFetchMobiles = (page) => dispatch(getMobiles(page));
+  const handleFetchMobilesByPrice = (values, page) =>
+    dispatch(getMobilesByPrice(values, page));
+
+  const { state } = useLocation();
+  const [filterCheck, setFilterCheck] = useState();
+
+  //useCallBack
+  const changeFilter = React.useCallback(() => {
+    setFilterCheck(state);
+  }, [state]);
+  const reduxState = (isFilter) => isFilter;
+
+  //useMemo
+  const memoizedValue = React.useMemo(() => reduxState(isFilter), [isFilter]);
+  //useEffect
   useEffect(() => {
-    console.log("Mobile page===>", allMobiles);
-    handleFetchMobiles(pageNo);
-  }, [pageNo]);
-  console.log("Mobile page===>", allMobiles);
+    changeFilter(state);
+    if (memoizedValue === true) {
+      if (state.title === "Price") {
+        handleFetchMobilesByPrice(state.item, pageNo);
+      }
+    } else {
+      handleFetchMobiles(pageNo);
+    }
+  }, [pageNo, memoizedValue, filterCheck, changeFilter]);
   return (
     <React.Fragment>
       <Navbar />
