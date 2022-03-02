@@ -93,3 +93,311 @@ export const getMobilesByPrice = (values, page) => {
     }
   };
 };
+
+export const getMobilesByRAM = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbyram`, {
+      params: {
+        page,
+        lP: values.lP,
+        uP: values.uP,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesByROM = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbyrom`, {
+      params: {
+        page,
+        lP: values.lP,
+        uP: values.uP,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesBySize = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(
+      `${baseURL}/api/v1/mobiles/filterbyscreensize`,
+      {
+        params: {
+          page,
+          lP: values.lP,
+          uP: values.uP,
+        },
+      }
+    );
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesByMainCam = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbymaincam`, {
+      params: {
+        page,
+        lP: values.lP,
+        uP: values.uP,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesByFrontCam = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbyfrontcam`, {
+      params: {
+        page,
+        lP: values.lP,
+        uP: values.uP,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesByBattery = (values, page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbybattery`, {
+      params: {
+        page,
+        lP: values.lP,
+        uP: values.uP,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const getMobilesByOS = (values, page) => {
+  console.log("OS==>", values);
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbyos`, {
+      params: {
+        page,
+        OS: values.value,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+export const getMobilesByBrandName = (values, page) => {
+  console.log("OS==>", values);
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbybrandname`, {
+      params: {
+        page,
+        brandName: values,
+      },
+    });
+    console.log("Get mobile===>", res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};
+
+export const uploadAd = (values, images) => {
+  console.log("values==>", values);
+  console.log("images==>", images);
+  return async (dispatch) => {
+    const formData = new FormData();
+    for (var i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+    try {
+      const res = await axios.post(
+        `${baseURL}/api/v1/usedmobile/uploadadd`,
+
+        formData,
+        {
+          params: {
+            values,
+          },
+        },
+        {
+          headers: {
+            accept: "application/json",
+            "Accept-Language": "en-US,en;q=0.8",
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(res.data);
+      if (res.data) {
+        alert("save successfully");
+      } else {
+        alert("system busy please try again later");
+      }
+      // eslint-disable-next-line no-unreachable
+    } catch (error) {
+      // Add custom logic to handle errors
+    }
+  };
+};
+export const getOldMobiles = (page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/usedmobile/getusedmobiles`, {
+      params: {
+        page,
+      },
+    });
+    console.log(res.data);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+    } else {
+      console.log("Sever error");
+      dispatch({
+        type: actionTypes.MORE_MOBILES,
+        payload: res.data.success,
+      });
+      alert(res.data.data);
+    }
+  };
+};

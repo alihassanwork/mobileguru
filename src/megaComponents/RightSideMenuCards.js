@@ -6,12 +6,13 @@ import { isFilterMobile } from "../redux/actions/mobileActions";
 const rightMenu = [
   {
     title: "Price",
-    heading: {
-      show: "Less Then One 10000",
-      lP: "0",
-      uP: "10000",
-    },
+
     description: [
+      {
+        show: "Less Then One 10000",
+        lP: "0",
+        uP: "10000",
+      },
       {
         show: "10000 To 20000",
         lP: "10000",
@@ -33,12 +34,12 @@ const rightMenu = [
 
   {
     title: "RAM",
-    heading: {
-      show: "Less Then 1 GB",
-      lP: "0",
-      uP: "1",
-    },
     description: [
+      {
+        show: "Less Then 1 GB",
+        lP: "0",
+        uP: "1",
+      },
       {
         show: "1 GB to 2 GB",
         lP: "1",
@@ -60,12 +61,12 @@ const rightMenu = [
 
   {
     title: "Memory",
-    heading: {
-      show: "Less Then 16 GB",
-      lP: "0",
-      uP: "16",
-    },
     description: [
+      {
+        show: "Less Then 16 GB",
+        lP: "0",
+        uP: "16",
+      },
       {
         show: "16 GB To 32 GB",
         lP: "16",
@@ -87,12 +88,12 @@ const rightMenu = [
 
   {
     title: "Display",
-    heading: {
-      show: "Less Then 4 Inches",
-      lP: "0",
-      uP: "4",
-    },
     description: [
+      {
+        show: "Less Then 4 Inches",
+        lP: "0",
+        uP: "4",
+      },
       {
         show: "4.1 Inches To 5.0 Inches",
         lP: "4.1",
@@ -114,11 +115,11 @@ const rightMenu = [
 
   {
     title: "OS",
-    heading: {
-      show: "Andriod",
-      value: "Andriod",
-    },
     description: [
+      {
+        show: "Android",
+        value: "Android",
+      },
       {
         show: "IOS",
         value: "IOS",
@@ -137,12 +138,12 @@ const rightMenu = [
 
   {
     title: "Camera",
-    heading: {
-      show: "Less Then 8 MP",
-      lP: "0",
-      uP: "8",
-    },
     description: [
+      {
+        show: "Less Then 8 MP",
+        lP: "0",
+        uP: "8",
+      },
       {
         show: "8 MP To 16 MP",
         lP: "8",
@@ -163,12 +164,12 @@ const rightMenu = [
   },
   {
     title: "Selfi Camera",
-    heading: {
-      show: "Less Then 8 MP",
-      lP: "0",
-      uP: "8",
-    },
     description: [
+      {
+        show: "Less Then 8 MP",
+        lP: "0",
+        uP: "8",
+      },
       {
         show: "8 MP To 16 MP",
         lP: "8",
@@ -190,12 +191,12 @@ const rightMenu = [
 
   {
     title: "Battery",
-    heading: {
-      show: "Less Then 4000 MAH",
-      lP: "0",
-      uP: "4000",
-    },
     description: [
+      {
+        show: "Less Then 4000 MAH",
+        lP: "0",
+        uP: "4000",
+      },
       {
         show: "4000 MAH To 4500 MAH",
         lP: "4000",
