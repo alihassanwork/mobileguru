@@ -8,3 +8,4 @@ export { default as MobilelistCard } from "./MobilelistCard";
 export { default as NewsCard } from "./NewsCard";
 export { default as ReviewCard } from "./ReviewCard";
 export { default as MobileBrandsNames } from "./MobileBrandsNames";
+export { default as Multiselect } from "./MultiSelect"
