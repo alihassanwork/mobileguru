@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +6,9 @@ import { getMobileById } from "../redux/actions/mobileActions";
 import { baseURL } from "api/baseURL";
 import { FaStar } from "react-icons/fa";
 import Slider from "react-slick";
+import { Formik, Form, ErrorMessage, Field } from "formik";
+import * as Yup from "yup";
+import { postReview } from "../redux/actions/mobileActions";
 const leftMenu = [
   {
     title: "Latest Mobiles",
@@ -42,14 +45,28 @@ const leftMenu = [
   },
 ];
 
+const initialValues = {
+  name: "",
+  email: "",
+  oppinion: "",
+  stars: "",
+};
+
+const validate = Yup.object({
+  name: Yup.string().required("Required"),
+  email: Yup.string().required("Required"),
+  oppinion: Yup.string().required("Required"),
+  stars: Yup.string().required("Required"),
+});
 const SmartPhoneDetailSpec = () => {
   const { singleMobile } = useSelector((state) => state.mobileReducer);
-  const [inputs, setInputs] = useState({});
+
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleFetchMobileById = (value) => dispatch(getMobileById(value));
 
+  const handlePostMobileReview = (value) => dispatch(postReview(value));
   useEffect(() => {
     console.log("Hello");
     if (Object.keys(singleMobile).length === 0) {
@@ -70,14 +87,6 @@ const SmartPhoneDetailSpec = () => {
     // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
   };
 
-  const handleRatingForm = async (e) => {
-    console.log(inputs, "rating form values");
-  };
-  const handleRatingFormChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
   const check = Object.keys(singleMobile).length !== 0;
   console.log("detail===>", singleMobile);
 
@@ -661,7 +670,7 @@ const SmartPhoneDetailSpec = () => {
             {/*RATING*/}
             <div className="flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
               <div className="lg:w-[40%] text-[#07844C] text-md font-bold  ">
-                Rating
+                RATING
               </div>
               <div className="flex-col w-full">
                 <div className=" flex w-full">
@@ -691,105 +700,186 @@ const SmartPhoneDetailSpec = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="w-full max-w-md  bg-transparent">
-                <form
-                  onSubmit={handleRatingForm}
-                  className="bg-transparent  rounded  mx-auto px-8 pt-6 pb-8 mb-4"
-                >
-                  <div className="mb-4">
-                    <h3 className="block  text-sm font-bold mb-2" for="name">
-                      Name
-                    </h3>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="name"
-                      type="text"
-                      value={inputs.name || ""}
-                      onChange={handleRatingFormChange}
-                    />
+            {/*OPINION*/}
+            <div className="flex-col lg:flex lg:flex-row w-full mt-5 border-black border-b-2 pb-3">
+              <div className="lg:w-[40%] text-[#07844C] text-md font-bold  ">
+                OPINION
+              </div>
+              <div className="flex-col w-full">
+                <div className=" flex flex-col w-full">
+                  <div className="flex w-full">
+                    <h3 className="w-1/3 text-sm font-bold">USERS</h3>
+                    <label htmlFor="" className="text-sm font-medium w-[67%]">
+                      OPINIONS
+                    </label>
+                    <br />
                   </div>
-                  <div className="mb-6">
-                    <h3 className="block text-sm font-bold mb-2" for="email">
-                      Email
-                    </h3>
-                    <input
-                      className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                      id="email"
-                      type="email"
-                      value={inputs.email || ""}
-                      onChange={handleRatingFormChange}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <h3 className="block  text-sm font-bold mb-2" for="opinion">
-                      Opinion
-                    </h3>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="opinion"
-                      type="text"
-                      value={inputs.opinion || ""}
-                      onChange={handleRatingFormChange}
-                    />
-                  </div>
-                  <div className="my-4">
-                    <h3 className="block  text-sm font-bold mb-2" for="rating">
-                      Rating
-                    </h3>
-                    <div>
-                      <label className="flex items-center gap-1">
-                        <input type="radio" name="star" value="1" />{" "}
-                        <FaStar className="text-[#F4871E]" />
+                  {check && singleMobile.reviews !== undefined ? (
+                    singleMobile.reviews.map((item) => (
+                      <div className="flex  w-full border-black border-b-[0.03rem] ">
+                        <h3 className="w-1/3 text-sm font-bold">{item.name}</h3>
+                        <label
+                          htmlFor=""
+                          className="text-sm font-medium w-[67%]"
+                        >
+                          {item.oppinion}
+                        </label>
+                        <br />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex w-full border-black border-b-[0.03rem] ">
+                      <h3 className="w-1/3 text-sm font-bold">Unavalable</h3>
+                      <label htmlFor="" className="text-sm font-medium w-[67%]">
+                        Unavailable
                       </label>
+                      <br />
                     </div>
-                    <div>
-                      <label className="flex items-center gap-1">
-                        <input type="radio" name="star" value="2" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                      </label>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-1">
-                        <input type="radio" name="star" value="3" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                      </label>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-1">
-                        <input type="radio" name="star" value="4" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                      </label>
-                    </div>
-                    <div>
-                      <label className="flex items-center gap-1">
-                        <input type="radio" name="star" value="5" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                        <FaStar className="text-[#F4871E]" />
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="flex items-center justify-between">
-                    <button
-                      className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-8  rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Add Review
-                    </button>
-                  </div>
-                </form>
+                  )}
+                </div>
               </div>
             </div>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validate}
+              onSubmit={async (values) => {
+                values.mobileId = singleMobile._id;
+                console.log(values);
+                handlePostMobileReview(values);
+              }}
+            >
+              {(formik) => (
+                <Form>
+                  <div className="flex justify-center">
+                    <div className="w-full max-w-md  bg-transparent">
+                      <div className="mb-4">
+                        <h3 className="block  text-sm font-bold mb-2">Name</h3>
+                        <input
+                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          name="name"
+                          type="text"
+                          value={formik.values.name}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                        />
+                        <ErrorMessage
+                          component="div"
+                          className="text-red-700 text-sm"
+                          name="name"
+                        />
+                      </div>
+                      <div className="mb-6">
+                        <h3 className="block text-sm font-bold mb-2">Email</h3>
+                        <input
+                          className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                          name="email"
+                          type="email"
+                          value={formik.values.email}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          autoComplete="off"
+                        />
+                        <ErrorMessage
+                          component="div"
+                          className="text-red-700 text-sm"
+                          name="email"
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <h3
+                          className="block  text-sm font-bold mb-2"
+                          for="opinion"
+                        >
+                          Opinion
+                        </h3>
+                        <input
+                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          name="oppinion"
+                          type="text"
+                          value={formik.values.opinion}
+                          onChange={formik.handleChange}
+                          autoComplete="off"
+                        />
+                        <ErrorMessage
+                          component="div"
+                          className="text-red-700 text-sm"
+                          name="oppinion"
+                        />
+                      </div>
+                      <div className="my-4" id="my-radio-group">
+                        <h3 className="block  text-sm font-bold mb-2">
+                          Rating
+                        </h3>
+                        <div>
+                          <label className="flex items-center gap-1">
+                            <Field type="radio" name="stars" value="1" />
+
+                            <FaStar className="text-[#F4871E]" />
+                          </label>
+                        </div>
+                        <div>
+                          <label className="flex items-center gap-1">
+                            <Field type="radio" name="stars" value="2" />
+
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                          </label>
+                        </div>
+                        <div>
+                          <label className="flex items-center gap-1">
+                            <Field type="radio" name="stars" value="3" />
+
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                          </label>
+                        </div>
+                        <div>
+                          <label className="flex items-center gap-1">
+                            <Field type="radio" name="stars" value="4" />
+
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                          </label>
+                        </div>
+                        <div>
+                          <label className="flex items-center gap-1">
+                            <Field type="radio" name="stars" value="5" />
+
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                            <FaStar className="text-[#F4871E]" />
+                          </label>
+                        </div>
+                      </div>
+                      <ErrorMessage
+                        component="div"
+                        className="text-red-700 text-sm"
+                        name="stars"
+                      />
+                      <div class="flex items-center justify-between">
+                        <button
+                          className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-8  rounded focus:outline-none focus:shadow-outline"
+                          type="submit"
+                        >
+                          Add Review
+                        </button>
+                        <button
+                          className="btn text-sm font-light rounded-sm p-2 pl-6 pr-6 bg-red-200 btn-dark mt-3 hidden"
+                          type="reset"
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>
