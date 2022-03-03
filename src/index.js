@@ -18,6 +18,7 @@ import {
   ContactUs,
   MobileAcessories,
   Comparison,
+  Test
 } from "screens";
 
 ReactDOM.render(
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomeScreen />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/phoneDescription" element={<SmartPhoneDetailDesc />} />
           <Route path="/PhoneDetails" element={<UsedSmartPhoneDetails />} />
           <Route path="/UploadAd" element={<UsedMobileUploadAdDetails />} />

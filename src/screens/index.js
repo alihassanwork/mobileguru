@@ -10,3 +10,4 @@ export { default as Reviews } from "./Reviews";
 export { default as ContactUs } from "./ContactUs";
 export { default as MobileAcessories } from "./MobileAcessories";
 export { default as Comparison } from "./Comparison";
+export { default as Test } from "./Test";

@@ -1,22 +1,30 @@
 import { actionTypes } from "../actionTypes";
 
 const initialState = {
-  firstMobile: {},
-  secondMobile: {},
+  allMobilesForComparison: [],
+  firstComparisonMobile: {},
+  secondComparisonMobile: {}
 };
 
 const comparisonReducer = (state = initialState, action) => {
+  console.log(action.payload, "comparison data")
   switch (action.type) {
-    case actionTypes.FIRST_MOBILE: {
+    case actionTypes.FIRST_COMPARISON_MOBILE: {
       return {
         ...state,
-        firstMobile: action.payload,
+        firstComparisonMobile: action.payload
       };
     }
-    case actionTypes.SECOND_MOBILE: {
+    case actionTypes.SECOND_COMPARISON_MOBILE: {
       return {
         ...state,
-        secondMobile: action.payload,
+        secondComparisonMobile: action.payload
+      };
+    }
+    case actionTypes.GET_ALL_MOBILES_FOR_COMPARISON: {
+      return {
+        ...state,
+        allMobilesForComparison: action.payload,
       };
     }
     default: {
