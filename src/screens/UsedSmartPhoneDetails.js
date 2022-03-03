@@ -1,7 +1,10 @@
-import React from "react";
-import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
+import React, { useEffect } from "react";
+import { Footer, FilterMobileCard, Navbar } from "components";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsedMobileById } from "../redux/actions/mobileActions";
+import { baseURL } from "api/baseURL";
 const leftMenu = [
   {
     title: "Latest Mobiles",
@@ -51,6 +54,9 @@ const sliderData = [
 
 const UsedSmartPhoneDetails = () => {
   const navigate = useNavigate();
+  const { singleMobile } = useSelector((state) => state.mobileReducer);
+  const dispatch = useDispatch();
+  const handleFetchMobileById = (value) => dispatch(getUsedMobileById(value));
   const settings = {
     dots: false,
     infinite: true,
@@ -60,6 +66,19 @@ const UsedSmartPhoneDetails = () => {
     // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
     // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
   };
+  useEffect(() => {
+    console.log("Hello");
+    if (Object.keys(singleMobile).length === 0) {
+      console.log("hello 2");
+      const id = localStorage.getItem("detailId");
+      handleFetchMobileById(id);
+    } else {
+      return;
+    }
+  }, [singleMobile, handleFetchMobileById]);
+
+  const check = Object.keys(singleMobile).length !== 0;
+  console.log("singleMobile==>", singleMobile);
   return (
     <React.Fragment>
       <Navbar />
@@ -78,15 +97,21 @@ const UsedSmartPhoneDetails = () => {
               {/* carousel start */}
               <div className=" w-full pl-8 pr-8">
                 <Slider {...settings}>
-                  {sliderData.map(({ imageName }) => {
-                    return (
-                      <div className="flex">
-                        <div className="flex  justify-center">
-                          <ImageAsset className="h-[15rem]" src={imageName} />
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {check
+                    ? singleMobile.usedMobilePhotos.map((imageName) => {
+                        return (
+                          <div className="flex">
+                            <div className="flex  justify-center">
+                              <img
+                                className="h-[15rem]"
+                                src={`${baseURL}${imageName}`}
+                                alt={`${singleMobile.brandName}`}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })
+                    : null}
                 </Slider>
               </div>
               {/* carousel ends  */}
@@ -95,90 +120,83 @@ const UsedSmartPhoneDetails = () => {
 
           {/* second col */}
           <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-[0.03rem] border-black">
-            <div className="w-1/2 text-center font-bold text-xl ">
-              <h1>Description</h1>
-            </div>
-            <div className="w-1/2 text-center font-bold text-xl border-l-[0.05rem] border-black">
-              <h1>Specification</h1>
+            <div className="w-full text-center font-bold text-xl border-l-[0.05rem] border-black">
+              <h1 className="text-center">Specification</h1>
             </div>
           </div>
           {/*Third Col  */}
           <div className="w-full flex-col">
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
-                Brand Name{" "}
+                BrandName
               </div>
-              <div className="w-1/2 text-[black] font-bold">Oppo F9</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.brandName : ""}
+              </div>
+            </div>
+            <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
+              <div className="w-1/2 text-[#07844C] font-bold text-lg">Ram </div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.ram : ""}
+              </div>
             </div>
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
-                Ram/Rom{" "}
+                Rom / Storage{" "}
               </div>
-              <div className="w-1/2 text-[black] font-bold">6Gb/32Gb</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.rom : ""}
+              </div>
             </div>
 
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
                 Condition{" "}
               </div>
-              <div className="w-1/2 text-[black] font-bold">10/10</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.condition : ""}
+              </div>
             </div>
 
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
                 Price{" "}
               </div>
-              <div className="w-1/2 text-[black] font-bold">18000</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.price : ""}
+              </div>
             </div>
 
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
                 Location{" "}
               </div>
-              <div className="w-1/2 text-[black] font-bold">Islamabad</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.location : ""}
+              </div>
             </div>
             <div className="w-full flex border-b-2 border-[black] pt-4 pb-2">
               <div className="w-1/2 text-[#07844C] font-bold text-lg">
                 Contact No{" "}
               </div>
-              <div className="w-1/2 text-[black] font-bold">+9243524352345</div>
+              <div className="w-1/2 text-[black] font-bold">
+                {" "}
+                {singleMobile ? singleMobile.contactNo : ""}
+              </div>
             </div>
           </div>
 
           {/* Fourth Col */}
-          <div className="w-full flex-col p-2 rounded-[0.5rem] mt-5 pb-[5rem] border-2 border-black">
+          <div className="w-full flex-col px-2 rounded-[0.5rem] mt-5 pb-[5rem] border-2 border-black">
             <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
-            </div>
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
-            </div>
-            <div className="w-full text-xs mt-5">
-              <p>
-                Aliqua ad aliqua veniam est laborum qui ex Lorem enim do
-                deserunt mollit eu. Dolore est irure anim deserunt nisi est.
-                Aute officia et ipsum ullamco ullamco voluptate fugiat. Elit
-                commodo ullamco do deserunt velit aliqua commodo exercitation
-                tempor. Lorem dolor veniam nisi occaecat proident eu consequat
-                aute ullamco id fugiat est. Magna incididunt et in excepteur
-                ullamco adipisicing laboris aliquip.
-              </p>
+              <h2 className="text-lg font-semibold">Detail Summary</h2>
+              <p>{singleMobile ? singleMobile.description : ""}</p>
             </div>
           </div>
         </div>

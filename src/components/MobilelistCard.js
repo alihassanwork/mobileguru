@@ -61,7 +61,13 @@ const MobilelistCard = (props) => {
       ) : (
         <div
           className="bg-white flex-col w-full  rounded-md pb-5 cursor-pointer"
-          onClick={() => console.log("hello")}
+          onClick={() => {
+            localStorage.setItem("detailId", props.item._id);
+            handleSetSingleMobile(props.item);
+            navigate("/PhoneDetails", {
+              state: props.item,
+            });
+          }}
         >
           <div className="flex justify-center">
             <img

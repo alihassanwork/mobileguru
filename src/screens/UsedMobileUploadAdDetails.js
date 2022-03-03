@@ -96,6 +96,7 @@ const initialValues = {
   location: "",
   price: "",
   contact: "",
+  description: "",
 };
 
 const validate = Yup.object({
@@ -106,6 +107,7 @@ const validate = Yup.object({
   location: Yup.string().required("Required"),
   price: Yup.string().required("Required"),
   contact: Yup.string().required("Required"),
+  description: Yup.string().required("Required"),
 });
 const UsedMobileUploadAdDetails = () => {
   const [mobilePhotos, setMobilePhotos] = useState([]);
@@ -339,6 +341,23 @@ const UsedMobileUploadAdDetails = () => {
                   component="div"
                   className="text-red-700 text-sm"
                   name="contact"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Contact No</h2>
+                  <textarea
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    rows="5"
+                    placeholder="Please enter mobile phone detail summary"
+                    name="description"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  ></textarea>
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="description"
                 />
                 <div className="flex-col w-full mt-10 justify-center mb-5 text-center">
                   <button

@@ -51,6 +51,18 @@ export const getMobileById = (value) => async (dispatch) => {
   });
 };
 
+export const getUsedMobileById = (value) => async (dispatch) => {
+  const res = await axios.get(`${baseURL}/api/v1/mobiles/getoldsinglemobile`, {
+    params: {
+      detailId: `${value}`,
+    },
+  });
+  dispatch({
+    type: actionTypes.GET_MOBILE_BY_ID,
+    payload: res.data.data,
+  });
+};
+
 export const postReview = (value) => async (dispatch) => {
   const res = await axios.patch(`${baseURL}/api/v1/mobiles/addReviews`, {
     value,
