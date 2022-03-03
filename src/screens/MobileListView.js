@@ -1,81 +1,110 @@
 import React, { useEffect, useState } from "react";
 import { Footer, MobilelistCard, Navbar, MobileBrandsNames } from "components";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { RightSideMenu, LeftSideMenu } from "megaComponents";
-import { getMobiles } from "../redux/actions/mobileActions";
+import {
+  getMobiles,
+  getMobilesByPrice,
+  getMobilesByRAM,
+  getMobilesByROM,
+  getMobilesBySize,
+  getMobilesByMainCam,
+  getMobilesByFrontCam,
+  getMobilesByBattery,
+  getMobilesByOS,
+  getMobilesByBrandName,
+  getOldMobiles,
+} from "../redux/actions/mobileActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const mobilelistData = [
-  {
-    imgsrc: "OppoPhoneRed",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneRed",
-    mobilename: "Iphone 11",
-    price: "$423.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "samsung",
-    mobilename: "Samsung A12",
-    price: "$123.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Oppo",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Nokia",
-    mobilename: "Nokia 10.0",
-    price: "$93.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneYellow",
-    mobilename: "Iphone 11",
-    price: "$323.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Oppo",
-    mobilename: "Oppo F19",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "Infinix",
-    mobilename: "infinix hote 10",
-    price: "$23.40",
-    rating: "4.5",
-  },
-  {
-    imgsrc: "IphoneRed",
-    mobilename: "Iphone 12",
-    price: "$623.40",
-    rating: "4.5",
-  },
-];
 const MobileListView = () => {
   let navigate = useNavigate();
   const [pageNo, setPageNumber] = useState(1);
   //redux
   const dispatch = useDispatch();
-  const { allMobiles, moreMobile } = useSelector(
+  const { allMobiles, moreMobile, isFilter } = useSelector(
     (state) => state.mobileReducer
   );
+  //actions start
   const handleFetchMobiles = (page) => dispatch(getMobiles(page));
+  const handleFetchMobilesByPrice = (values, page) =>
+    dispatch(getMobilesByPrice(values, page));
+
+  const handleFetchMobilesByRAM = (values, page) =>
+    dispatch(getMobilesByRAM(values, page));
+
+  const handleFetchMobilesByROM = (values, page) =>
+    dispatch(getMobilesByROM(values, page));
+  const handleFetchMobilesBySize = (values, page) =>
+    dispatch(getMobilesBySize(values, page));
+  const handleFetchMobilesByMainCam = (values, page) =>
+    dispatch(getMobilesByMainCam(values, page));
+
+  const handleFetchMobilesByFrontCam = (values, page) =>
+    dispatch(getMobilesByFrontCam(values, page));
+
+  const handleFetchMobilesByBattery = (values, page) =>
+    dispatch(getMobilesByBattery(values, page));
+  const handleFetchMobilesByOS = (values, page) =>
+    dispatch(getMobilesByOS(values, page));
+  const handleFetchMobilesByBrandName = (values, page) =>
+    dispatch(getMobilesByBrandName(values, page));
+  const handleFetchOldMobiles = (values, page) =>
+    dispatch(getOldMobiles(values, page));
+
+  //actions end
+  const { state } = useLocation();
+  const [filterCheck, setFilterCheck] = useState();
+
+  //useCallBack
+  const changeFilter = React.useCallback(() => {
+    setFilterCheck(state);
+  }, [state]);
+  const reduxState = (isFilter) => isFilter;
+
+  //useMemo
+  const memoizedValue = React.useMemo(() => reduxState(isFilter), [isFilter]);
+  //useEffect
   useEffect(() => {
-    console.log("Mobile page===>", allMobiles);
-    handleFetchMobiles(pageNo);
-  }, [pageNo]);
-  console.log("Mobile page===>", allMobiles);
+    changeFilter(state);
+    if (memoizedValue === true) {
+      if (state.title === "Price") {
+        handleFetchMobilesByPrice(state.item, pageNo);
+      }
+      if (state.title === "RAM") {
+        handleFetchMobilesByRAM(state.item, pageNo);
+      }
+      if (state.title === "Memory") {
+        handleFetchMobilesByROM(state.item, pageNo);
+      }
+      if (state.title === "Display") {
+        handleFetchMobilesBySize(state.item, pageNo);
+      }
+      if (state.title === "Camera") {
+        handleFetchMobilesByMainCam(state.item, pageNo);
+      }
+      if (state.title === "Selfi Camera") {
+        handleFetchMobilesByFrontCam(state.item, pageNo);
+      }
+      if (state.title === "Battery") {
+        handleFetchMobilesByBattery(state.item, pageNo);
+      }
+      if (state.title === "OS") {
+        handleFetchMobilesByOS(state.item, pageNo);
+      }
+      if (state.title === "BrandName") {
+        console.log(state);
+        handleFetchMobilesByBrandName(state.item, pageNo);
+      }
+      if (state.title === "OldMobiles") {
+        console.log("Get old mobiles");
+        handleFetchOldMobiles(pageNo);
+      }
+    } else {
+      handleFetchMobiles(pageNo);
+    }
+  }, [pageNo, memoizedValue, filterCheck, changeFilter]);
   return (
     <React.Fragment>
       <Navbar />
@@ -101,9 +130,11 @@ const MobileListView = () => {
           <div className="lg:pl-4 lg:pr-4 rounded-md bg-center bg-[#D2DCE7] ">
             <div className="flex-1  p-4 pl-1 pr-1 ">
               <div className="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 gap-2 gap-y-6">
-                {allMobiles.map((item) => {
-                  return <MobilelistCard item={item} key={item._id} />;
-                })}
+                {allMobiles !== undefined
+                  ? allMobiles.map((item) => {
+                      return <MobilelistCard item={item} key={item._id} />;
+                    })
+                  : "...loading"}
               </div>
             </div>
           </div>

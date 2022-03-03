@@ -1,11 +1,10 @@
-import React from "react";
-import {
-  FilterCard,
-  Footer,
-  ImageAsset,
-  FilterMobileCard,
-  Navbar,
-} from "components";
+import React, { useState } from "react";
+import { FilterCard, Footer, FilterMobileCard, Navbar } from "components";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Slider from "react-slick";
+import { useDispatch } from "react-redux";
+import { uploadAd } from "../redux/actions/mobileActions";
 
 const rightMenu = [
   {
@@ -89,7 +88,60 @@ const leftMenu = [
     ],
   },
 ];
+const initialValues = {
+  brandName: "",
+  ram: "",
+  rom: "",
+  condition: "",
+  location: "",
+  price: "",
+  contact: "",
+  description: "",
+};
+
+const validate = Yup.object({
+  brandName: Yup.string().required("Required"),
+  ram: Yup.string().required("Required"),
+  rom: Yup.string().required("Required"),
+  condition: Yup.string().required("Required"),
+  location: Yup.string().required("Required"),
+  price: Yup.string().required("Required"),
+  contact: Yup.string().required("Required"),
+  description: Yup.string().required("Required"),
+});
 const UsedMobileUploadAdDetails = () => {
+  const [mobilePhotos, setMobilePhotos] = useState([]);
+  const dispatch = useDispatch();
+  const [file, setFile] = useState();
+  var [fileObj, setFileObject] = useState([]);
+  var [fileArray, setFileArray] = useState([]);
+
+  const handleUploadAd = (values, images) => dispatch(uploadAd(values, images));
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+
+    // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
+    // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
+  };
+  React.useEffect(() => {
+    setMobilePhotos([
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200/300",
+    ]);
+  }, []);
+  const uploadMultipleFiles = (e) => {
+    setFile(e.target.files);
+    fileObj.splice(0, fileObj.length);
+    fileArray.splice(0, fileArray.length);
+    fileObj.push(e.target.files);
+    for (let i = 0; i < fileObj[0].length; i++) {
+      fileArray.push(URL.createObjectURL(fileObj[0][i]));
+    }
+  };
   return (
     <React.Fragment>
       <Navbar />
@@ -131,65 +183,193 @@ const UsedMobileUploadAdDetails = () => {
 
         <div className="lg:w-[60%] rounded-lg h-full  pb-0 lg:pb-[5rem]  flex flex-col pl-7 lg:ml-4 lg:mr-4 pr-7 mt-10 lg:mt-0  order-1 lg:order-2 bg-cover  bg-[url('assets/images/backgroundImageMainScreen.png')]">
           <div className="flex flex-col  lg:flex-row">
-            <ImageAsset
-              className=" object-top p-2 object-contain h-[20rem]"
-              src="OppoPhoneRed"
-            />
+            <Slider
+              {...settings}
+              className=" object-top p-2 w-60 object-contain h-[20rem]"
+            >
+              {fileArray
+                ? (fileArray || []).map((imageName) => {
+                    return (
+                      <img
+                        className=" object-top p-2 w-48 object-contain h-[20rem]"
+                        src={`${imageName}`}
+                        alt={`${imageName}`}
+                      />
+                    );
+                  })
+                : null}
+            </Slider>
           </div>
-          <div className="flex-col mb-10 w-full">
-            <button className=" lg:ml-16 p-3  pl-8 pr-8 text-xs border-black border rounded-lg">
+          <div className="flex-col mb-10 mt-8 w-full">
+            <input
+              type="file"
+              className="form-control hidden"
+              onChange={uploadMultipleFiles}
+              multiple
+              id="input"
+              name="images"
+              accept="image/*"
+            />
+            <label
+              className=" lg:ml-16 p-3 cursor-pointer  pl-8 pr-8 text-xs border-black border rounded-lg"
+              htmlFor="input"
+            >
               {" "}
               Upload Image{" "}
-            </button>
+            </label>
           </div>
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">Brand Name</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">RAM/ROM</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">Condition</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">Price</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validate}
+            onSubmit={async (values) => {
+              file
+                ? handleUploadAd(values, file)
+                : alert("Please Upload your imges");
+            }}
+          >
+            {(formik) => (
+              <Form>
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Brand Name</h2>
 
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">Location</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
-          <div className="flex-col mt-4  w-full">
-            <h2 className="text-sm font-semibold">Contact No</h2>
-            <input
-              type="text"
-              className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
-            />
-          </div>
-          <div className="flex-col w-full mt-10 justify-center mb-5 text-center">
-            <button className="p-3 pl-16 pr-16 text-xs font-bold bg-white rounded-lg">
-              Post Now
-            </button>
-          </div>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="brandName"
+                    value={formik.values.brandName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="brandName"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">RAM</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="ram"
+                    value={formik.values.ram}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="ram"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">ROM/Storage</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="rom"
+                    value={formik.values.rom}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="rom"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Condition</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="condition"
+                    value={formik.values.condition}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="condition"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Price</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="price"
+                    value={formik.values.price}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="price"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Location</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="location"
+                    value={formik.values.location}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="location"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Contact No</h2>
+                  <input
+                    type="text"
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    name="contact"
+                    value={formik.values.contact}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="contact"
+                />
+                <div className="flex-col mt-4  w-full">
+                  <h2 className="text-sm font-semibold">Contact No</h2>
+                  <textarea
+                    className="w-full border border-black p-3 bg-transparent rounded-lg mt-3"
+                    rows="5"
+                    placeholder="Please enter mobile phone detail summary"
+                    name="description"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  ></textarea>
+                </div>
+                <ErrorMessage
+                  component="div"
+                  className="text-red-700 text-sm"
+                  name="description"
+                />
+                <div className="flex-col w-full mt-10 justify-center mb-5 text-center">
+                  <button
+                    className="p-3 pl-16 pr-16 text-xs font-bold bg-white rounded-lg"
+                    type="submit"
+                  >
+                    Post Now
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
         <div className="lg:w-[20%]  text-center order-3 lg:order-3">
           <div className="flex flex-col">

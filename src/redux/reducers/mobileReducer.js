@@ -6,6 +6,7 @@ const initialState = {
   allOldMobiles: [],
   singleOldMobile: {},
   moreMobile: true,
+  isFilter: false,
 };
 
 const mobileReducer = (state = initialState, action) => {
@@ -46,7 +47,12 @@ const mobileReducer = (state = initialState, action) => {
         singleMobile: action.payload,
       };
     }
-
+    case actionTypes.IS_FILTER: {
+      return {
+        ...state,
+        isFilter: action.payload,
+      };
+    }
     default: {
       return state;
     }
