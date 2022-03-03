@@ -50,7 +50,40 @@ export const getMobileById = (value) => async (dispatch) => {
     payload: res.data.data,
   });
 };
+export const getAllPhonesForComparison = () => async (dispatch) => {
+  console.log("for comparison");
+  const res = await axios.get(`${baseURL}/api/v1/mobiles/compare`);
 
+  dispatch({
+    type: actionTypes.GET_ALL_MOBILES_FOR_COMPARISON,
+    payload: res.data.data,
+  });
+};
+
+export const getComparisonMobileById1 = (value) => async (dispatch) => {
+  console.log(value);
+  const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
+    params: {
+      detailId: `${value}`,
+    },
+  });
+  dispatch({
+    type: actionTypes.FIRST_COMPARISON_MOBILE,
+    payload: res.data.data,
+  });
+};
+export const getComparisonMobileById2 = (value) => async (dispatch) => {
+  console.log(value);
+  const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
+    params: {
+      detailId: `${value}`,
+    },
+  });
+  dispatch({
+    type: actionTypes.SECOND_COMPARISON_MOBILE,
+    payload: res.data.data,
+  });
+};
 export const getUsedMobileById = (value) => async (dispatch) => {
   const res = await axios.get(`${baseURL}/api/v1/mobiles/getoldsinglemobile`, {
     params: {
