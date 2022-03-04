@@ -1,61 +1,36 @@
-import React from "react";
-import {
-  Footer,
-  ImageAsset,
-  Navbar,
-  MobileBrandsNames,
-  Multiselect,
-} from "components";
+import React, { useState } from "react";
+import { Footer, Navbar, MobileBrandsNames } from "components";
 import InputRangee from "components/InputRange";
-import { RightSideMenu, LeftSideMenu } from "megaComponents";
-
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
-const MobileBrand = [
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-];
+import { LeftSideMenu } from "megaComponents";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { getMobilesUnPaginated } from "../redux/actions/mobileActions";
+import { isFilterMobile } from "../redux/actions/mobileActions";
 const Test = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleIsFilter = (value) => dispatch(isFilterMobile(value));
+  const [data, setData] = useState({
+    WLAN: false,
+    bluetooth: false,
+    GPS: false,
+    radio: false,
+    USB: false,
+    NFC: false,
+    DATA: false,
+    brandName: "",
+    card: false,
+    frontFlash: false,
+    mainFlash: false,
+    price: { min: 0, max: 500000 },
+    ram: { min: 0, max: 32 },
+    rom: { min: 0, max: 1024 },
+    size: { min: 0, max: 10 },
+    mainCam: { min: 2, max: 500 },
+    frontCam: { min: 2, max: 500 },
+    capacity: { min: 500, max: 20000 },
+  });
+
   return (
     <>
       <React.Fragment>
@@ -73,24 +48,40 @@ const Test = () => {
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               GENERAL
             </h2>
-            <div class="w-full md:w-1/2 px-3 md:mb-6 md:mb-0 inline-block">
-              <div class="relative">
-                <Multiselect />
-              </div>
-            </div>
-            <div class="w-full md:w-1/2 px-3 my-1 md:my-6 inline-block md:mb-0">
-              <div class="relative">
+
+            <div className="w-full md:w-[100%] md:mx-auto px-3 my-1 md:my-6 inline-block">
+              <div className="relative mx-auto">
                 <select
-                  class="block appearance-none w-full  border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
+                  className="block appearance-none w-full  border border-gray-200 text-gray-700 py-2.5 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="brandName"
+                  value={data.brandName}
+                  onChange={
+                    (newValue) =>
+                      setData({ ...data, brandName: newValue.target.value })
+
+                    // setData({ ...data, brandName: value.target })
+                  }
                 >
-                  <option>New Mexico</option>
-                  <option>Missouri</option>
-                  <option>Texas</option>
+                  <option value="apple">Apple</option>
+                  <option value="samsung">Samsung</option>
+                  <option value="htc">HTC</option>
+                  <option value="nokia">Nokia</option>
+                  <option value="oneplus">OnePlus</option>
+                  <option value="huawei">Huawei</option>
+                  <option value="lg">LG</option>
+                  <option value="sony">Sony</option>
+                  <option value="infinix">Infinix</option>
+                  <option value="xiaomi">Xiaomi</option>
+                  <option value="lenovo">Lenovo</option>
+                  <option value="oppo">Oppo</option>
+                  <option value="vivo">Vivo</option>
+                  <option value="realme">Realme</option>
+                  <option value="qmobile">Qmobile</option>
+                  <option value="Tecno">Tecno</option>
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
-                    class="fill-current h-4 w-4"
+                    className="fill-current h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                   >
@@ -102,114 +93,144 @@ const Test = () => {
 
             <div className="w-[90%] bg-white pb-6 px-4 md:p-6 mb-3 mx-auto">
               <h2 className="mb-6">Price</h2>
-              <InputRangee />
+              <InputRangee
+                minValue={1000}
+                maxValue={500000}
+                step={1000}
+                name="price"
+                onPriceCall={(values) => setData({ ...data, price: values })}
+              />
             </div>
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               CONNECTIVITY
             </h2>
 
             <div className="w-[90%] bg-white pl-1 pt-1 md:p-3  md:my-3 mx-auto flex  flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
+                  name="true"
+                  value={data.WLAN}
+                  id="WLAN"
+                  checked={data.WLAN}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, WLAN: !data.WLAN })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base text-xs md:text-base"
-                  for="flexCheckDefault"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base text-xs md:text-base"
+                  htmlFor="WLAN"
                 >
-                  first one
+                  WLAN
                 </label>
               </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  name="true"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault1"
+                  id="bluetooth"
+                  checked={data.bluetooth}
+                  defaultChecked={false}
+                  onChange={(value) =>
+                    setData({ ...data, bluetooth: !data.bluetooth })
+                  }
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base text-xs md:text-base"
-                  for="flexCheckDefault1"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base text-xs md:text-base"
+                  htmlFor="bluetooth"
                 >
-                  Default checkbox
+                  Bluetooth
                 </label>
               </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault2"
+                  name="true"
+                  value={data.GPS}
+                  id="GPS"
+                  checked={data.GPS}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, GPS: !data.GPS })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault2"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="GPS"
                 >
-                  Default checkbox
+                  GPS
                 </label>
               </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault5"
+                  name="true"
+                  value={data.radio}
+                  id="radio"
+                  checked={data.radio}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, radio: !data.radio })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault5"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="radio"
                 >
-                  Default checkbox
+                  Radio
                 </label>
               </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault3"
+                  name="true"
+                  value={data.USB}
+                  id="USB"
+                  checked={data.USB}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, USB: !data.USB })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault3"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="USB"
                 >
-                  Default checkbox
+                  USB
                 </label>
               </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault4"
+                  value={data.NFC}
+                  id="NFC"
+                  checked={data.NFC}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, NFC: !data.NFC })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault4"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="NFC"
                 >
-                  Default checkbox
+                  NFC
                 </label>
               </div>
-            </div>
-            <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5flex text-white text-xl">
-              PLATFORM
-            </h2>
-            <div className="bg-white w-[90%] md:p-4 md:pb-8 mt-3 px-8 mx-auto">
-              <div class="relative">
-                <Multiselect />
-              </div>
-            </div>
-            <div className=" bg-white w-[90%] my-3 mx-auto p-4 pb-8 px-8 flex flex-col md:flex-row justify-between">
-              <div className="md:w-[45%] mb-6">
-                <h2 className="mb-8  font-bold">Processor</h2>
-                <InputRangee />
-              </div>
-              <div className="md:w-[45%]">
-                <h2 className="mb-8 font-bold">Cores</h2>
-                <InputRangee />
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+                <input
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  type="checkbox"
+                  name="true"
+                  value={data.DATA}
+                  id="DATA"
+                  checked={data.DATA}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, DATA: !data.DATA })}
+                />
+                <label
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="DATA"
+                >
+                  DATA
+                </label>
               </div>
             </div>
 
@@ -219,24 +240,40 @@ const Test = () => {
             <div className=" bg-white w-[90%] my-3 mx-auto p-4 pb-8 px-8 flex flex-col md:flex-row justify-between">
               <div className="w-[45%] mb-6">
                 <h2 className="mb-8  font-bold">RAM</h2>
-                <InputRangee />
+                <InputRangee
+                  step={2}
+                  minValue={0}
+                  maxValue={32}
+                  name="ram"
+                  onRamCall={(values) => setData({ ...data, ram: values })}
+                />
               </div>
               <div className="w-[45%]">
                 <h2 className="mb-8 font-bold">Built-in Memory</h2>
-                <InputRangee />
+                <InputRangee
+                  step={8}
+                  minValue={0}
+                  maxValue={1024}
+                  name="rom"
+                  onRomCall={(values) => setData({ ...data, rom: values })}
+                />
               </div>
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault6"
+                  name="true"
+                  value={data.card}
+                  id="card"
+                  checked={data.card}
+                  defaultChecked={false}
+                  onChange={(value) => setData({ ...data, card: !data.card })}
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault6"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="card"
                 >
                   Card slot
                 </label>
@@ -247,26 +284,46 @@ const Test = () => {
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Screen Size</h2>
-              <InputRangee />
+              <InputRangee
+                minValue={2}
+                maxValue={10}
+                step={1}
+                name="size"
+                onSizeCall={(values) => setData({ ...data, size: values })}
+              />
             </div>
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               CAMERA
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Primary Camera</h2>
-              <InputRangee />
+              <InputRangee
+                minValue={2}
+                maxValue={500}
+                step={5}
+                name="mainCam"
+                onMainCamCall={(values) =>
+                  setData({ ...data, mainCam: values })
+                }
+              />
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault7"
+                  name="true"
+                  value={data.mainFlash}
+                  id="mainFlash"
+                  checked={data.mainFlash}
+                  defaultChecked={false}
+                  onChange={(value) =>
+                    setData({ ...data, mainFlash: !data.mainFlash })
+                  }
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault7"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="mainFlash"
                 >
                   Camera Flash
                 </label>
@@ -274,154 +331,63 @@ const Test = () => {
             </div>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Secondary Camera</h2>
-              <InputRangee />
+              <InputRangee
+                minValue={2}
+                maxValue={500}
+                step={5}
+                name="front"
+                onFrontCall={(values) => setData({ ...data, frontCam: values })}
+              />
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
+              <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
                 <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault8"
+                  name="true"
+                  value={data.frontFlash}
+                  id="frontFlash"
+                  checked={data.frontFlash}
+                  defaultChecked={false}
+                  onChange={(value) =>
+                    setData({ ...data, frontFlash: !data.frontFlash })
+                  }
                 />
                 <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault8"
+                  className="form-check-label inline-block text-gray-800 text-xs md:text-base"
+                  htmlFor="frontFlash"
                 >
                   Front Flash
                 </label>
               </div>
             </div>
-            <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
-              SENSORS
-            </h2>
 
-            <div className="w-[90%] bg-white pl-1 pt-1 md:p-3 my-3 mx-auto flex flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault9"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault9"
-                >
-                  Default checkbox
-                </label>
-              </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault10"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault10"
-                >
-                  Default checkbox
-                </label>
-              </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault12"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault12"
-                >
-                  Default checkbox
-                </label>
-              </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault15"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault15"
-                >
-                  Default checkbox
-                </label>
-              </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault13"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault13"
-                >
-                  Gyro
-                </label>
-              </div>
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault14"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="flexCheckDefault14"
-                >
-                  Accelerometer
-                </label>
-              </div>
-            </div>
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               BATTERY
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Capacity</h2>
-              <InputRangee />
+              <InputRangee
+                minValue={500}
+                maxValue={20000}
+                step={5}
+                name="capacity"
+                onCapacityCall={(values) =>
+                  setData({ ...data, capacity: values })
+                }
+              />
             </div>
-            <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
-              <div class="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
-                <input
-                  class="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                  value=""
-                  id="Fast Charging"
-                />
-                <label
-                  class="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  for="Fast Charging"
-                >
-                  Fast Charging
-                </label>
-              </div>
-            </div>
-            <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
-              MISCELLANEOUS
-            </h2>
-            <div className="bg-white w-[90%] p-4 pb-8 mt-3 px-8 mx-auto">
-              <div class="relative">
-                <Multiselect />
-              </div>
-            </div>
-            <div className="bg-white w-[90%] my-3 mx-auto p-4 pb-8 px-8 flex flex-col md:flex-row justify-between">
-              <div className="w-[45%] mb-6">
-                <h2 className="mb-8  font-bold">Weight</h2>
-                <InputRangee />
-              </div>
-              <div className="w-[45%]">
-                <h2 className="mb-8 font-bold">Slimness</h2>
-                <InputRangee />
-              </div>
+            <div
+              className="flex items-center justify-center py-2 px-8 text-white cursor-pointer bg-green-700"
+              onClick={() => {
+                navigate("/MobileList", {
+                  state: { title: "advance", isFilter: true },
+                });
+                handleIsFilter(true);
+                dispatch(getMobilesUnPaginated(data));
+              }}
+            >
+              Apply Advance Filter
             </div>
           </main>
         </div>
