@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Footer, Navbar, MobileBrandsNames, Multiselect } from "components";
+import React, { useState } from "react";
+import { Footer, Navbar, MobileBrandsNames } from "components";
 import InputRangee from "components/InputRange";
 import { LeftSideMenu } from "megaComponents";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import { getMobilesUnPaginated } from "../redux/actions/mobileActions";
-
+import { isFilterMobile } from "../redux/actions/mobileActions";
 const Test = () => {
-  const allUnPaginatedMobiles = useSelector((state) => state.mobileReducer);
   const dispatch = useDispatch();
-  const [multiValues, setMultiValues] = useState({
-    minValue: "",
-    maxValue: "",
-  });
-
+  const navigate = useNavigate();
+  const handleIsFilter = (value) => dispatch(isFilterMobile(value));
   const [data, setData] = useState({
     WLAN: false,
     bluetooth: false,
@@ -23,14 +20,17 @@ const Test = () => {
     DATA: false,
     brandName: "",
     card: false,
-    forntFlash: false,
+    frontFlash: false,
     mainFlash: false,
-    price: {},
+    price: { min: 0, max: 500000 },
+    ram: { min: 0, max: 32 },
+    rom: { min: 0, max: 1024 },
+    size: { min: 0, max: 10 },
+    mainCam: { min: 2, max: 500 },
+    frontCam: { min: 2, max: 500 },
+    capacity: { min: 500, max: 20000 },
   });
-  // useEffect(() => {
-  //   dispatch(getMobilesUnPaginated());
-  // }, []);
-  console.log(allUnPaginatedMobiles, "All unpaginated mobiles");
+
   return (
     <>
       <React.Fragment>
@@ -64,6 +64,7 @@ const Test = () => {
                 >
                   <option value="apple">Apple</option>
                   <option value="samsung">Samsung</option>
+                  <option value="htc">HTC</option>
                   <option value="nokia">Nokia</option>
                   <option value="oneplus">OnePlus</option>
                   <option value="huawei">Huawei</option>
@@ -76,7 +77,7 @@ const Test = () => {
                   <option value="vivo">Vivo</option>
                   <option value="realme">Realme</option>
                   <option value="qmobile">Qmobile</option>
-                  <option>Tecno</option>
+                  <option value="Tecno">Tecno</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -92,7 +93,13 @@ const Test = () => {
 
             <div className="w-[90%] bg-white pb-6 px-4 md:p-6 mb-3 mx-auto">
               <h2 className="mb-6">Price</h2>
-              <InputRangee minValue={1000} maxValue={500000} step={1000} />
+              <InputRangee
+                minValue={1000}
+                maxValue={500000}
+                step={1000}
+                name="price"
+                onPriceCall={(values) => setData({ ...data, price: values })}
+              />
             </div>
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               CONNECTIVITY
@@ -233,11 +240,23 @@ const Test = () => {
             <div className=" bg-white w-[90%] my-3 mx-auto p-4 pb-8 px-8 flex flex-col md:flex-row justify-between">
               <div className="w-[45%] mb-6">
                 <h2 className="mb-8  font-bold">RAM</h2>
-                <InputRangee step={2} minValue={0} maxValue={32} />
+                <InputRangee
+                  step={2}
+                  minValue={0}
+                  maxValue={32}
+                  name="ram"
+                  onRamCall={(values) => setData({ ...data, ram: values })}
+                />
               </div>
               <div className="w-[45%]">
                 <h2 className="mb-8 font-bold">Built-in Memory</h2>
-                <InputRangee step={8} minValue={0} maxValue={1024} />
+                <InputRangee
+                  step={8}
+                  minValue={0}
+                  maxValue={1024}
+                  name="rom"
+                  onRomCall={(values) => setData({ ...data, rom: values })}
+                />
               </div>
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
@@ -265,14 +284,28 @@ const Test = () => {
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Screen Size</h2>
-              <InputRangee minValue={2} maxValue={10} step={1} />
+              <InputRangee
+                minValue={2}
+                maxValue={10}
+                step={1}
+                name="size"
+                onSizeCall={(values) => setData({ ...data, size: values })}
+              />
             </div>
             <h2 className="bg-backgroundGreenColor w-[100%] p-2 md:p-5 flex text-white text-xl">
               CAMERA
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Primary Camera</h2>
-              <InputRangee minValue={2} maxValue={500} step={5} />
+              <InputRangee
+                minValue={2}
+                maxValue={500}
+                step={5}
+                name="mainCam"
+                onMainCamCall={(values) =>
+                  setData({ ...data, mainCam: values })
+                }
+              />
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
               <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
@@ -298,7 +331,13 @@ const Test = () => {
             </div>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Secondary Camera</h2>
-              <InputRangee minValue={2} maxValue={500} step={5} />
+              <InputRangee
+                minValue={2}
+                maxValue={500}
+                step={5}
+                name="front"
+                onFrontCall={(values) => setData({ ...data, frontCam: values })}
+              />
             </div>
             <div className="w-[90%] bg-white p-3 my-3 mx-auto flex flex-wrap">
               <div className="form-check bg-slate-200 p-2 md:p-3 mr-[1px] mb-1 md:m-3">
@@ -306,17 +345,17 @@ const Test = () => {
                   className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="checkbox"
                   name="true"
-                  value={data.forntFlash}
-                  id="forntFlash"
-                  checked={data.forntFlash}
+                  value={data.frontFlash}
+                  id="frontFlash"
+                  checked={data.frontFlash}
                   defaultChecked={false}
                   onChange={(value) =>
-                    setData({ ...data, forntFlash: !data.forntFlash })
+                    setData({ ...data, frontFlash: !data.frontFlash })
                   }
                 />
                 <label
                   className="form-check-label inline-block text-gray-800 text-xs md:text-base"
-                  htmlFor="forntFlash"
+                  htmlFor="frontFlash"
                 >
                   Front Flash
                 </label>
@@ -328,11 +367,25 @@ const Test = () => {
             </h2>
             <div className="w-[90%] bg-white p-6 m-3 mx-auto">
               <h2 className="mb-6">Capacity</h2>
-              <InputRangee minValue={500} maxValue={20000} step={5} />
+              <InputRangee
+                minValue={500}
+                maxValue={20000}
+                step={5}
+                name="capacity"
+                onCapacityCall={(values) =>
+                  setData({ ...data, capacity: values })
+                }
+              />
             </div>
             <div
               className="flex items-center justify-center py-2 px-8 text-white cursor-pointer bg-green-700"
-              onClick={() => console.log(data)}
+              onClick={() => {
+                navigate("/MobileList", {
+                  state: { title: "advance", isFilter: true },
+                });
+                handleIsFilter(true);
+                dispatch(getMobilesUnPaginated(data));
+              }}
             >
               Apply Advance Filter
             </div>

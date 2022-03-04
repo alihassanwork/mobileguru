@@ -32,9 +32,16 @@ export const getMobiles = (page) => {
   };
 };
 
-export const getMobilesUnPaginated = (page) => {
+export const getMobilesUnPaginated = (values) => {
+  console.log(values);
   return async (dispatch) => {
-    const res = await axios.get(`${baseURL}/api/v1/mobiles/getallmobiles`);
+    const res = await axios.post(
+      `${baseURL}/api/v1/mobiles/filterbyadvancesearch`,
+      {
+        values,
+      }
+    );
+    console.log(res.data.data, "advanced flter");
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,

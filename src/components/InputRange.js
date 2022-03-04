@@ -21,7 +21,32 @@ class InputRangee extends Component {
           formatLabel={(value) => `${value}`}
           value={this.state.value}
           onChange={(value) => {
-            console.log(value, "child component");
+            this.setState({ value });
+            switch (this.props.name) {
+              case "price":
+                this.props.onPriceCall(value);
+                break;
+              case "ram":
+                this.props.onRamCall(value);
+                break;
+              case "rom":
+                this.props.onRomCall(value);
+                break;
+              case "front":
+                this.props.onFrontCall(value);
+                break;
+              case "mainCam":
+                this.props.onMainCamCall(value);
+                break;
+              case "size":
+                this.props.onSizeCall(value);
+                break;
+              case "capacity":
+                this.props.onCapacityCall(value);
+                break;
+              default:
+                console.log("Ali Hassan");
+            }
           }}
         />
       </form>

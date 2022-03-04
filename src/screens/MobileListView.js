@@ -94,12 +94,14 @@ const MobileListView = () => {
         handleFetchMobilesByOS(state.item, pageNo);
       }
       if (state.title === "BrandName") {
-        console.log(state);
         handleFetchMobilesByBrandName(state.item, pageNo);
       }
       if (state.title === "OldMobiles") {
         console.log("Get old mobiles");
         handleFetchOldMobiles(pageNo);
+      }
+      if (state.title === "advance") {
+        console.log("advance");
       }
     } else {
       handleFetchMobiles(pageNo);
@@ -138,28 +140,30 @@ const MobileListView = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between my-4">
-            <div>
+          {state.title === "advance" ? null : (
+            <div className="flex items-center justify-between my-4">
+              <div>
+                <div
+                  onClick={() => setPageNumber((prev) => prev - 1)}
+                  className={`cursor-pointer flex items-center justify-start gap-3 py-2 rounded-xl px-4 border-2 bg-green-700 text-white ${
+                    pageNo == 1 ? "hidden" : ""
+                  }`}
+                >
+                  <FaBackward />
+                  <h2>Previous</h2>
+                </div>
+              </div>
               <div
-                onClick={() => setPageNumber((prev) => prev - 1)}
+                onClick={() => setPageNumber((prev) => prev + 1)}
                 className={`cursor-pointer flex items-center justify-start gap-3 py-2 rounded-xl px-4 border-2 bg-green-700 text-white ${
-                  pageNo == 1 ? "hidden" : ""
+                  moreMobile ? "" : "hidden"
                 }`}
               >
-                <FaBackward />
-                <h2>Previous</h2>
+                <h2>Next</h2>
+                <FaForward />
               </div>
             </div>
-            <div
-              onClick={() => setPageNumber((prev) => prev + 1)}
-              className={`cursor-pointer flex items-center justify-start gap-3 py-2 rounded-xl px-4 border-2 bg-green-700 text-white ${
-                moreMobile ? "" : "hidden"
-              }`}
-            >
-              <h2>Next</h2>
-              <FaForward />
-            </div>
-          </div>
+          )}
         </div>
         <div className="lg:w-[20%] px-5 lg:px-0  text-center order-3 lg:order-3">
           <div className="flex flex-col">
