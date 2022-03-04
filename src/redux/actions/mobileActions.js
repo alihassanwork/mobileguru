@@ -32,6 +32,18 @@ export const getMobiles = (page) => {
   };
 };
 
+export const getMobilesUnPaginated = (page) => {
+  return async (dispatch) => {
+    const res = await axios.get(`${baseURL}/api/v1/mobiles/getallmobiles`);
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_MOBILES,
+        payload: res.data.data,
+      });
+    }
+  };
+};
+
 export const getSingleMobile = (value) => (dispatch) => {
   dispatch({
     type: actionTypes.GET_SINGLE_MOBILE,
@@ -96,42 +108,6 @@ export const getUsedMobileById = (value) => async (dispatch) => {
   });
 };
 
-
-export const getAllPhonesForComparison = () => async (dispatch) => {
-  console.log("for comparison")
-  const res = await axios.get(`${baseURL}/api/v1/mobiles/compare`);
-
-  dispatch({
-    type: actionTypes.GET_ALL_MOBILES_FOR_COMPARISON,
-    payload: res.data.data,
-  });
-}
-
-export const getComparisonMobileById1 = (value) => async (dispatch) => {
-  console.log(value);
-  const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
-    params: {
-      detailId: `${value}`,
-    },
-  });
-  dispatch({
-    type: actionTypes.FIRST_COMPARISON_MOBILE,
-    payload: res.data.data,
-  });
-};
-export const getComparisonMobileById2 = (value) => async (dispatch) => {
-  console.log(value);
-  const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
-    params: {
-      detailId: `${value}`,
-    },
-  });
-  dispatch({
-    type: actionTypes.SECOND_COMPARISON_MOBILE,
-    payload: res.data.data,
-  });
-};
-=======
 export const postReview = (value) => async (dispatch) => {
   const res = await axios.patch(`${baseURL}/api/v1/mobiles/addReviews`, {
     value,
@@ -482,4 +458,3 @@ export const getOldMobiles = (page) => {
     }
   };
 };
-

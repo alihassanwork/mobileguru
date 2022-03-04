@@ -17,6 +17,13 @@ const mobileReducer = (state = initialState, action) => {
         allMobiles: action.payload,
       };
     }
+    case actionTypes.GET_ALL_UNPAGINATED_MOBILES: {
+      return {
+        ...state,
+        allMobiles: action.payload,
+      };
+    }
+
     case actionTypes.GET_SINGLE_MOBILE: {
       return {
         ...state,
