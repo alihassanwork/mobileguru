@@ -1,6 +1,5 @@
 import React from "react";
 import { Footer, MobilelistCard, MobileBrandsNames, Navbar } from "components";
-
 import { useNavigate } from "react-router";
 import { RightSideMenu, LeftSideMenu } from "megaComponents";
 
@@ -79,13 +78,19 @@ const MobileAcessories = () => {
         </div>
         <div className="lg:w-[20%] px-5 lg:px-0  text-center order-3 lg:order-3">
           <div className="flex flex-col">
-            <button className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]">
+            <button
+              className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]"
+              onClick={() => navigate("/test")}
+            >
               Advance Search
             </button>
             <button className="w-auto border-2 bg-transparent mt-8 p-1  rounded-[1rem]">
               Videos Reviews
             </button>
-            <button className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]">
+            <button
+              className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]"
+              onClick={() => navigate("/UploadAd")}
+            >
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaStar, GrFormClose } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { baseURL } from "api/baseURL";
 import { useNavigate } from "react-router";
 import { getSingleMobile } from "../redux/actions/mobileActions";
@@ -10,7 +10,26 @@ const MobilelistCard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSetSingleMobile = (value) => dispatch(getSingleMobile(value));
-  const stars = Array(5).fill(0);
+
+  const total = props.item.new
+    ? props.item.reviews.length !== 0
+      ? props.item.reviews.reduce(
+          //reduce go through the array and cartItem is the each item in the array
+          (accumulatedTotal, review) =>
+            accumulatedTotal + parseInt(review.stars),
+          0 //0 is the start point of accumulatedTotal
+        )
+      : 1
+    : 0;
+  const averageReview = props.item.new
+    ? props.item.reviews.length !== 0
+      ? total / props.item.reviews.length
+      : 0
+    : 0;
+  const stars = Array(averageReview > 1 ? Math.round(averageReview) : 1).fill(
+    0
+  );
+
   return (
     <React.Fragment>
       {props.item.new === true ? (
@@ -42,10 +61,15 @@ const MobilelistCard = (props) => {
               {memory.rom.unit}
             </p>
             <div className="flex w-full items-center">
-              <div className="flex  text-[#F4871E] text-xs">
-                {stars.map((_, index) => {
-                  return <FaStar key={index} />;
-                })}
+              <div className="flex items-center text-[#F4871E] text-xs">
+                {props.item.reviews.length === 0
+                  ? "Not Rated Yet"
+                  : stars.map((_, index) => {
+                      return <FaStar key={index} />;
+                    })}
+                <div className="flex items-center text-[#F4871E] text-xs pl-2 text-center">
+                  {averageReview < 1 ? null : averageReview}
+                </div>
               </div>
               <h3 className="text-xs ml-3 ">{rating}</h3>{" "}
               {/*  <button className="flex ml-3 items-center rounded-[0.3rem] p-1  text-xs border border-[#9DC2FF] text-[#9DC2FF] ">

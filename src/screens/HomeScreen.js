@@ -1,56 +1,10 @@
 import React from "react";
 import { Footer, ImageAsset, Navbar, MobileBrandsNames } from "components";
 import { RightSideMenu, LeftSideMenu } from "megaComponents";
-
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
-const MobileBrand = [
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-  {
-    mobilesNames: [{ Name: ["Apple", "Samsung", "Infinix", "RealMe"] }],
-  },
-];
+import { useNavigate } from "react-router";
 
 const Home = () => {
-  console.log("Ali Hassan");
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <Navbar />
@@ -98,13 +52,19 @@ const Home = () => {
         </div>
         <div className="lg:w-[20%]  text-center order-2 lg:order-3">
           <div className="flex flex-col">
-            <button className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]">
+            <button
+              className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]"
+              onClick={() => navigate("/test")}
+            >
               Advance Search
             </button>
             <button className="w-auto border-2 bg-transparent mt-8 p-1  rounded-[1rem]">
               Videos Reviews
             </button>
-            <button className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]">
+            <button
+              className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]"
+              onClick={() => navigate("/UploadAd")}
+            >
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>

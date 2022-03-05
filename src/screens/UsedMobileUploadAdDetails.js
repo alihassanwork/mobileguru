@@ -3,8 +3,11 @@ import { FilterCard, Footer, FilterMobileCard, Navbar } from "components";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Slider from "react-slick";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { uploadAd } from "../redux/actions/mobileActions";
+import { useNavigate } from "react-router";
+import { getLatestMobiles } from "../redux/actions/mobileActions";
+import { baseURL } from "api/baseURL";
 
 const rightMenu = [
   {
@@ -53,41 +56,6 @@ const rightMenu = [
   },
 ];
 
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
 const initialValues = {
   brandName: "",
   ram: "",
@@ -111,10 +79,12 @@ const validate = Yup.object({
 });
 const UsedMobileUploadAdDetails = () => {
   const [mobilePhotos, setMobilePhotos] = useState([]);
+  const { latestMobile } = useSelector((state) => state.mobileReducer);
   const dispatch = useDispatch();
   const [file, setFile] = useState();
   var [fileObj, setFileObject] = useState([]);
   var [fileArray, setFileArray] = useState([]);
+  const navigate = useNavigate();
 
   const handleUploadAd = (values, images) => dispatch(uploadAd(values, images));
   const settings = {
@@ -133,6 +103,190 @@ const UsedMobileUploadAdDetails = () => {
       "https://picsum.photos/200/300",
     ]);
   }, []);
+  React.useEffect(() => {
+    dispatch(getLatestMobiles());
+  }, []);
+  const leftMenu = [
+    {
+      title: "Latest Mobiles",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+    {
+      title: "Top 6 By Fans",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+
+    {
+      title: "Top 10 Compaines",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[5].brandName}`,
+        },
+      ],
+    },
+  ];
   const uploadMultipleFiles = (e) => {
     setFile(e.target.files);
     fileObj.splice(0, fileObj.length);
@@ -373,13 +527,19 @@ const UsedMobileUploadAdDetails = () => {
         </div>
         <div className="lg:w-[20%]  text-center order-3 lg:order-3">
           <div className="flex flex-col">
-            <button className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]">
+            <button
+              className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]"
+              onClick={() => navigate("/test")}
+            >
               Advance Search
             </button>
             <button className="w-auto border-2 bg-transparent mt-8 p-1  rounded-[1rem]">
               Videos Reviews
             </button>
-            <button className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]">
+            <button
+              className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]"
+              onClick={() => navigate("/UploadAd")}
+            >
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>

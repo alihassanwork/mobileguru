@@ -18,7 +18,7 @@ const leftMenu = [
     ],
   },
   {
-    title: "Top 10 By Fans",
+    title: "Top 6 By Fans",
     products: [
       { src: "oppoA9", name: "oppoReno2" },
       { src: "oppoReno2", name: "oppoReno2" },

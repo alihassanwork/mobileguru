@@ -5,6 +5,7 @@ const initialState = {
   singleMobile: {},
   allOldMobiles: [],
   singleOldMobile: {},
+  latestMobile: [],
   moreMobile: true,
   isFilter: false,
 };
@@ -58,6 +59,12 @@ const mobileReducer = (state = initialState, action) => {
       return {
         ...state,
         isFilter: action.payload,
+      };
+    }
+    case actionTypes.GET_LATEST_MOBILES: {
+      return {
+        ...state,
+        latestMobile: action.payload,
       };
     }
     default: {
