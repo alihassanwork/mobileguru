@@ -99,7 +99,15 @@ const reviewCardData = [
     date: "27 Dec 2021",
   },
 ];
-
+// {rightMenu.map(({ title, heading, description }) => {
+//   return (
+//     <FilterCard title={title} heading={heading}>
+//       {description.map((item) => {
+//         return <h1>{item}</h1>;
+//       })}
+//     </FilterCard>
+//   );
+// })}
 const Reviews = () => {
   const navigate = useNavigate();
   return (
@@ -124,16 +132,6 @@ const Reviews = () => {
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>
-
-          {rightMenu.map(({ title, heading, description }) => {
-            return (
-              <FilterCard title={title} heading={heading}>
-                {description.map((item) => {
-                  return <h1>{item}</h1>;
-                })}
-              </FilterCard>
-            );
-          })}
         </div>
 
         <div className="w-full lg:w-[80%] order-1 h-full  pb-0 lg:pb-[20rem]  flex flex-col lg:pl-7 lg:pr-7 mt-[-2rem]  lg:ml-3 lg:mr-3 lg:mt-0  lg:order-2 bg-center ">
