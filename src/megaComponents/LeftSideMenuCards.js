@@ -1,42 +1,197 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FilterMobileCard } from "components";
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
+import { useSelector, useDispatch } from "react-redux";
+import { getLatestMobiles } from "../redux/actions/mobileActions";
+import { baseURL } from "api/baseURL";
 
 const LeftSideMenuCards = () => {
+  const { latestMobile } = useSelector((state) => state.mobileReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLatestMobiles());
+  }, []);
+
+  const leftMenu = [
+    {
+      title: "Latest Mobiles",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+    {
+      title: "Top 6 By Fans",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+
+    {
+      title: "Top 10 Compaines",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[5].brandName}`,
+        },
+      ],
+    },
+  ];
   return (
     <>
       {leftMenu.map(({ title, products }) => {

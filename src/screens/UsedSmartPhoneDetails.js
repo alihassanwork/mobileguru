@@ -18,7 +18,7 @@ const leftMenu = [
     ],
   },
   {
-    title: "Top 10 By Fans",
+    title: "Top 6 By Fans",
     products: [
       { src: "oppoA9", name: "oppoReno2" },
       { src: "oppoReno2", name: "oppoReno2" },
@@ -67,9 +67,7 @@ const UsedSmartPhoneDetails = () => {
     // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
   };
   useEffect(() => {
-    console.log("Hello");
     if (Object.keys(singleMobile).length === 0) {
-      console.log("hello 2");
       const id = localStorage.getItem("detailId");
       handleFetchMobileById(id);
     } else {
@@ -78,7 +76,6 @@ const UsedSmartPhoneDetails = () => {
   }, [singleMobile, handleFetchMobileById]);
 
   const check = Object.keys(singleMobile).length !== 0;
-  console.log("singleMobile==>", singleMobile);
   return (
     <React.Fragment>
       <Navbar />

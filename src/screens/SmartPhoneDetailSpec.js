@@ -22,7 +22,7 @@ const leftMenu = [
     ],
   },
   {
-    title: "Top 10 By Fans",
+    title: "Top 6 By Fans",
     products: [
       { src: "oppoA9", name: "oppoReno2" },
       { src: "oppoReno2", name: "oppoReno2" },
@@ -68,9 +68,7 @@ const SmartPhoneDetailSpec = () => {
 
   const handlePostMobileReview = (value) => dispatch(postReview(value));
   useEffect(() => {
-    console.log("Hello");
     if (Object.keys(singleMobile).length === 0) {
-      console.log("hello 2");
       const id = localStorage.getItem("detailId");
       handleFetchMobileById(id);
     } else {
@@ -88,7 +86,6 @@ const SmartPhoneDetailSpec = () => {
   };
 
   const check = Object.keys(singleMobile).length !== 0;
-  console.log("detail===>", singleMobile);
 
   const total = check
     ? singleMobile.reviews.reduce(
@@ -97,7 +94,6 @@ const SmartPhoneDetailSpec = () => {
         0 //0 is the start point of accumulatedTotal
       )
     : 1;
-  console.log("total sum===>", total);
   const averageReview = check ? total / singleMobile.reviews.length : 0;
   return (
     <React.Fragment>
@@ -744,7 +740,6 @@ const SmartPhoneDetailSpec = () => {
               validationSchema={validate}
               onSubmit={async (values) => {
                 values.mobileId = singleMobile._id;
-                console.log(values);
                 handlePostMobileReview(values);
               }}
             >

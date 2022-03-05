@@ -6,6 +6,7 @@ import {
   MobilelistCard,
   Navbar,
 } from "components";
+import { useNavigate } from "react-router";
 
 const rightMenu = [
   {
@@ -111,19 +112,27 @@ const mobilelistData = [
 ];
 
 const VideoReview = () => {
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <Navbar />
       <div className="mainContent mt-20 flex flex-col lg:flex-row px-10">
         <div className="lg:w-[20%] order-2 ">
           <div className="flex flex-col">
-            <button className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]">
+            <button
+              className="w-auto border-2 bg-transparent p-1 mt-5 lg:mt-0  rounded-[1rem]"
+              onClick={() => navigate("/test")}
+            >
               Advance Search
             </button>
             <button className="w-auto border-2 bg-transparent mt-8 p-1  rounded-[1rem]">
               Videos Reviews
             </button>
-            <button className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]">
+            <button
+              className="w-auto text-white  bg-backgroundGreenColor text-xs mt-1 p-1 pl-[2rem] pr-[2rem] rounded-[1rem]"
+              onClick={() => navigate("/UploadAd")}
+            >
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>

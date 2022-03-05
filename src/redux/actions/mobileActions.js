@@ -33,7 +33,6 @@ export const getMobiles = (page) => {
 };
 
 export const getMobilesUnPaginated = (values) => {
-  console.log(values);
   return async (dispatch) => {
     const res = await axios.post(
       `${baseURL}/api/v1/mobiles/filterbyadvancesearch`,
@@ -41,7 +40,6 @@ export const getMobilesUnPaginated = (values) => {
         values,
       }
     );
-    console.log(res.data.data, "advanced flter");
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -70,7 +68,6 @@ export const getMobileById = (value) => async (dispatch) => {
   });
 };
 export const getAllPhonesForComparison = () => async (dispatch) => {
-  console.log("for comparison");
   const res = await axios.get(`${baseURL}/api/v1/mobiles/compare`);
 
   dispatch({
@@ -80,7 +77,6 @@ export const getAllPhonesForComparison = () => async (dispatch) => {
 };
 
 export const getComparisonMobileById1 = (value) => async (dispatch) => {
-  console.log(value);
   const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
     params: {
       detailId: `${value}`,
@@ -92,7 +88,6 @@ export const getComparisonMobileById1 = (value) => async (dispatch) => {
   });
 };
 export const getComparisonMobileById2 = (value) => async (dispatch) => {
-  console.log(value);
   const res = await axios.get(`${baseURL}/api/v1/mobiles/getsinglemobile`, {
     params: {
       detailId: `${value}`,
@@ -122,7 +117,6 @@ export const postReview = (value) => async (dispatch) => {
 };
 
 export const isFilterMobile = (value) => (dispatch) => {
-  console.log("isFilter===>", value);
   dispatch({
     type: actionTypes.IS_FILTER,
     payload: value,
@@ -137,7 +131,7 @@ export const getMobilesByPrice = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -167,7 +161,7 @@ export const getMobilesByRAM = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -197,7 +191,7 @@ export const getMobilesByROM = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -230,7 +224,7 @@ export const getMobilesBySize = (values, page) => {
         },
       }
     );
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -260,7 +254,7 @@ export const getMobilesByMainCam = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -290,7 +284,7 @@ export const getMobilesByFrontCam = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -320,7 +314,7 @@ export const getMobilesByBattery = (values, page) => {
         uP: values.uP,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -342,7 +336,6 @@ export const getMobilesByBattery = (values, page) => {
 };
 
 export const getMobilesByOS = (values, page) => {
-  console.log("OS==>", values);
   return async (dispatch) => {
     const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbyos`, {
       params: {
@@ -350,7 +343,7 @@ export const getMobilesByOS = (values, page) => {
         OS: values.value,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -371,7 +364,6 @@ export const getMobilesByOS = (values, page) => {
   };
 };
 export const getMobilesByBrandName = (values, page) => {
-  console.log("OS==>", values);
   return async (dispatch) => {
     const res = await axios.get(`${baseURL}/api/v1/mobiles/filterbybrandname`, {
       params: {
@@ -379,7 +371,7 @@ export const getMobilesByBrandName = (values, page) => {
         brandName: values,
       },
     });
-    console.log("Get mobile===>", res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -401,8 +393,6 @@ export const getMobilesByBrandName = (values, page) => {
 };
 
 export const uploadAd = (values, images) => {
-  console.log("values==>", values);
-  console.log("images==>", images);
   return async (dispatch) => {
     const formData = new FormData();
     for (var i = 0; i < images.length; i++) {
@@ -426,7 +416,7 @@ export const uploadAd = (values, images) => {
           },
         }
       );
-      console.log(res.data);
+
       if (res.data) {
         alert("save successfully");
       } else {
@@ -445,7 +435,7 @@ export const getOldMobiles = (page) => {
         page,
       },
     });
-    console.log(res.data);
+
     if (res.data.success) {
       dispatch({
         type: actionTypes.GET_MOBILES,
@@ -462,6 +452,27 @@ export const getOldMobiles = (page) => {
         payload: res.data.success,
       });
       alert(res.data.data);
+    }
+  };
+};
+
+export const getLatestMobiles = () => {
+  return async (dispatch) => {
+    const res = await axios.get(
+      `${baseURL}/api/v1/mobiles/getallpaginatedmobiles`,
+      {
+        params: {
+          page: 1,
+        },
+      }
+    );
+    if (res.data.success) {
+      dispatch({
+        type: actionTypes.GET_LATEST_MOBILES,
+        payload: res.data.data,
+      });
+    } else {
+      console.log("Sever error");
     }
   };
 };

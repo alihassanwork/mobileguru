@@ -1,8 +1,8 @@
 import React from "react";
-import { ImageAsset } from "components";
-
+import { useNavigate } from "react-router";
 const FilterMobileCard = (props) => {
   const { title, products } = props;
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       <div className="card rounded-tl-[3rem]  mt-5 pb-4  rounded-b-[3rem]  bg-backgroundGreenColor w-full">
@@ -15,10 +15,11 @@ const FilterMobileCard = (props) => {
             {products.slice(0, 3).map(({ name, src }) => {
               return (
                 <div className="flex-item cursor-pointer">
-                  <div className="flex flex-col w-full text-xs text-white">
-                    <ImageAsset
-                      className="w-full h-[5rem] md:h-[4rem] "
+                  <div className="flex flex-col w-full text-xs items-start text-white">
+                    <img
+                      className="w-[80%] h-[5rem] md:h-[4rem]"
                       src={src}
+                      alt="omg"
                     />
                     <h3>{name}</h3>
                   </div>
@@ -30,10 +31,11 @@ const FilterMobileCard = (props) => {
             {products.slice(3, 6).map(({ name, src }) => {
               return (
                 <div className="flex-item ">
-                  <div className="flex flex-col w-full text-xs text-white">
-                    <ImageAsset
-                      className="w-full h-[5rem] md:h-[4rem] "
+                  <div className="flex flex-col w-full text-xs items-start text-white">
+                    <img
+                      className="w-[80%] h-[5rem] md:h-[4rem] "
                       src={src}
+                      alt="omg"
                     />
                     <h3>{name}</h3>
                   </div>
@@ -42,7 +44,12 @@ const FilterMobileCard = (props) => {
             })}
           </div>
           <div className="w-full text-center mt-4 text-lg text-white ">
-            <button className="bg-buttonBgColor bg-gradient-to-b text-sm p-2 pl-4 pr-4 rounded-md from-buttonBgColorGradian1 to-buttonBgcolorGradian2  shadow-cyan-500/50 shadow-inner">
+            <button
+              className="bg-buttonBgColor bg-gradient-to-b text-sm p-2 pl-4 pr-4 rounded-md from-buttonBgColorGradian1 to-buttonBgcolorGradian2  shadow-cyan-500/50 shadow-inner"
+              onClick={() => {
+                navigate("/test");
+              }}
+            >
               Explore More
             </button>
           </div>

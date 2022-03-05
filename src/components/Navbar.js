@@ -10,29 +10,10 @@ const PhoneDetails = [
     value: "Review",
     hrefLink: "/Review ",
   },
-  {
-    value: "Phone Description",
-    hrefLink: "/phoneDescription",
-  },
 
-  {
-    value: "Phone Spec",
-    hrefLink: "/PhoneSpec ",
-  },
   {
     value: "News",
     hrefLink: "/News ",
-  },
-];
-
-const MobileList = [
-  {
-    value: "New Mobiles",
-    hrefLink: "/MobileList",
-  },
-  {
-    value: "Old Mobiles",
-    hrefLink: "/MobileList",
   },
 ];
 
@@ -101,14 +82,7 @@ const Navbar = () => {
                   <div>
                     <div class="group inline-block relative">
                       <button class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-                        <span
-                          class="mr-1"
-                          onClick={() => {
-                            navigate("/PhoneDetails");
-                          }}
-                        >
-                          PhoneDetails
-                        </span>
+                        <span class="mr-1">PhoneDetails</span>
                         <svg
                           class="fill-current h-4 w-4"
                           xmlns="http://www.w3.org/2000/svg"
@@ -187,12 +161,7 @@ const Navbar = () => {
                 <li class=" z-10">
                   <div>
                     <div class="group inline-block relative">
-                      <button
-                        class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
-                        onClick={() => {
-                          navigate("/acessories");
-                        }}
-                      >
+                      <button class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                         <span class="mr-1">Acessories</span>
                         <svg
                           class="fill-current h-4 w-4"
