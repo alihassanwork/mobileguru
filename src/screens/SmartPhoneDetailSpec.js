@@ -9,41 +9,9 @@ import Slider from "react-slick";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { postReview } from "../redux/actions/mobileActions";
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 6 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
+import { getLatestMobiles } from "../redux/actions/mobileActions";
+
+
 
 const initialValues = {
   name: "",
@@ -59,7 +27,190 @@ const validate = Yup.object({
   stars: Yup.string().required("Required"),
 });
 const SmartPhoneDetailSpec = () => {
-  const { singleMobile } = useSelector((state) => state.mobileReducer);
+  const { singleMobile, latestMobile } = useSelector((state) => state.mobileReducer);
+
+  const leftMenu = [
+    {
+      title: "Latest Mobiles",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+    {
+      title: "Top 6 By Fans",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+
+    {
+      title: "Top 10 Compaines",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[5].brandName}`,
+        },
+      ],
+    },
+  ];
+
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -89,10 +240,10 @@ const SmartPhoneDetailSpec = () => {
 
   const total = check
     ? singleMobile.reviews.reduce(
-        //reduce go through the array and cartItem is the each item in the array
-        (accumulatedTotal, review) => accumulatedTotal + parseInt(review.stars),
-        0 //0 is the start point of accumulatedTotal
-      )
+      //reduce go through the array and cartItem is the each item in the array
+      (accumulatedTotal, review) => accumulatedTotal + parseInt(review.stars),
+      0 //0 is the start point of accumulatedTotal
+    )
     : 1;
   const averageReview = check ? total / singleMobile.reviews.length : 0;
   return (
@@ -116,16 +267,16 @@ const SmartPhoneDetailSpec = () => {
                   <Slider {...settings}>
                     {Object.keys(singleMobile).length !== 0
                       ? singleMobile.mobilePhotos.map((imageName) => {
-                          return (
-                            <div>
-                              <img
-                                className=" object-top p-2  h-[15rem]"
-                                src={`${baseURL}${imageName}`}
-                                alt={`${singleMobile.brandName}`}
-                              />
-                            </div>
-                          );
-                        })
+                        return (
+                          <div>
+                            <img
+                              className=" object-top p-2  h-[15rem]"
+                              src={`${baseURL}${imageName}`}
+                              alt={`${singleMobile.brandName}`}
+                            />
+                          </div>
+                        );
+                      })
                       : null}
                   </Slider>
                 </div>
@@ -604,11 +755,10 @@ const SmartPhoneDetailSpec = () => {
                   <h3 className="w-1/3 text-sm font-bold">Extra</h3>
                   <label htmlFor="" className="text-sm font-medium w-[67%]">
                     {check
-                      ? `${
-                          singleMobile.features.extra
-                            ? singleMobile.features.extra
-                            : "Nil"
-                        }`
+                      ? `${singleMobile.features.extra
+                        ? singleMobile.features.extra
+                        : "Nil"
+                      }`
                       : ""}
                   </label>
                 </div>

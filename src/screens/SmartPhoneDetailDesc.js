@@ -5,61 +5,21 @@ import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
 import { getMobileById } from "../redux/actions/mobileActions";
 import { baseURL } from "api/baseURL";
-const leftMenu = [
-  {
-    title: "Latest Mobiles",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 6 By Fans",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-  {
-    title: "Top 10 Compaines",
-    products: [
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoA9", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-      { src: "oppoReno2", name: "oppoReno2" },
-    ],
-  },
-];
-const sliderData = [
-  {
-    imageName: "carouselImage",
-  },
-  {
-    imageName: "OppoPhoneRed",
-  },
-  {
-    imageName: "Infinix",
-  },
-];
+import { getLatestMobiles } from "../redux/actions/mobileActions";
+
 
 const SmartPhoneDetailDesc = () => {
-  const { singleMobile } = useSelector((state) => state.mobileReducer);
+  const { singleMobile, latestMobile } = useSelector((state) => state.mobileReducer);
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
+  React.useEffect(() => {
+    dispatch(getLatestMobiles());
+  }, []);
   const handleFetchMobileById = (value) => dispatch(getMobileById(value));
 
   const SlickArrowLeft = ({ currentSlide, slideCount, imgsrc, ...props }) => (
+
+
     <div className=" bg-white rounded-full w-fit p-2 ">
       <ImageAsset
         alt="prevArrow"
@@ -69,6 +29,189 @@ const SmartPhoneDetailDesc = () => {
       />
     </div>
   );
+
+
+  const leftMenu = [
+    {
+      title: "Latest Mobiles",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+    {
+      title: "Top 6 By Fans",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1
+              ? null
+              : `${latestMobile[5].brandName} ${latestMobile[5].modelNumber}`,
+        },
+      ],
+    },
+
+    {
+      title: "Top 10 Compaines",
+      products: [
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[0].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[1].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[2].mobilePhotos[0]}`,
+          name:
+            latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[3].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[4].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
+        },
+        {
+          src:
+            latestMobile.length < 1
+              ? null
+              : `${baseURL}${latestMobile[5].mobilePhotos[0]}`,
+          name: latestMobile.length < 1 ? null : `${latestMobile[5].brandName}`,
+        },
+      ],
+    },
+  ];
 
   const SlickArrowRight = ({ currentSlide, slideCount, imgsrc, ...props }) => (
     <div className=" bg-white rounded-full w-fit p-2">
@@ -122,16 +265,16 @@ const SmartPhoneDetailDesc = () => {
                   <Slider {...settings}>
                     {Object.keys(singleMobile).length !== 0
                       ? singleMobile.mobilePhotos.map((imageName) => {
-                          return (
-                            <div>
-                              <img
-                                className=" object-top p-2  h-[15rem]"
-                                src={`${baseURL}${imageName}`}
-                                alt={`${singleMobile.brandName}`}
-                              />
-                            </div>
-                          );
-                        })
+                        return (
+                          <div>
+                            <img
+                              className=" object-top p-2  h-[15rem]"
+                              src={`${baseURL}${imageName}`}
+                              alt={`${singleMobile.brandName}`}
+                            />
+                          </div>
+                        );
+                      })
                       : null}
                   </Slider>
                 </div>
