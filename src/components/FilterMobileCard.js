@@ -15,9 +15,9 @@ const FilterMobileCard = (props) => {
             {products.slice(0, 3).map(({ name, src }) => {
               return (
                 <div className="flex-item cursor-pointer">
-                  <div className="flex flex-col w-full text-xs items-start text-white">
+                  <div className="flex flex-col w-full text-xs items-center text-white justify-between">
                     <img
-                      className="w-[80%] h-[5rem] md:h-[4rem]"
+                      className="w-[50px] h-[5rem] md:h-[4rem]"
                       src={src}
                       alt="omg"
                     />
@@ -31,9 +31,9 @@ const FilterMobileCard = (props) => {
             {products.slice(3, 6).map(({ name, src }) => {
               return (
                 <div className="flex-item ">
-                  <div className="flex flex-col w-full text-xs items-start text-white">
+                  <div className="flex flex-col w-full text-xs items-center text-white justify-between">
                     <img
-                      className="w-[80%] h-[5rem] md:h-[4rem] "
+                      className="w-[50px] h-[5rem] md:h-[4rem] "
                       src={src}
                       alt="omg"
                     />
