@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ImageAsset from "./ImageAsset";
 import { IoCloseOutline } from "react-icons/io5";
+import { BsSearch } from "react-icons/bs";
+
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { isFilterMobile } from "../redux/actions/mobileActions";
+import { searchBySearchBar } from "../redux/actions/mobileActions";
 
 const PhoneDetails = [
   {
@@ -31,9 +34,14 @@ const Acessories = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleIsFilter = (value) => dispatch(isFilterMobile(value));
+  const handleSearchBar = (value) => {
+    dispatch(searchBySearchBar(value, navigate));
+  };
+
   return (
     <div className="flex flex-col mb-16 lg:mb-0">
       <div className="flex flex-col lg:flex-row mt-4">
@@ -162,7 +170,7 @@ const Navbar = () => {
                   <div>
                     <div class="group inline-block relative">
                       <button class="bg-white text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-                        <span class="mr-1">Acessories</span>
+                        <span class="mr-1">Others</span>
                         <svg
                           class="fill-current h-4 w-4"
                           xmlns="http://www.w3.org/2000/svg"
@@ -208,11 +216,20 @@ const Navbar = () => {
             <input
               className="bg-customGray rounded-full w-full pl-6 mt-4 text-blue-500 px-2 py-2"
               type="text"
-              placeholder="search"
+              value={searchValue}
+              placeholder="Search by brand name"
+              onChange={(e) => setSearchValue(e.target.value)}
             />
 
-            <button className="pointer-events-none cursor-pointer w-8 h-8 absolute top-9 transform -translate-y-1/2 right-4 ">
-              <IoCloseOutline className="w-full  h-full" />
+            <button className=" cursor-pointer w-8 h-8 absolute top-9 transform -translate-y-1/2 right-4 ">
+              {searchValue ? (
+                <BsSearch
+                  onClick={() => handleSearchBar(searchValue)}
+                  className="cursor-pointer"
+                />
+              ) : (
+                ""
+              )}
             </button>
           </div>
         </div>

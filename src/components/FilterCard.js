@@ -5,7 +5,7 @@ const FilterCard = (props) => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="right text-white rounded-2xl pt-3 bg-backgroundGreenColor search card mt-5 bg-[url('assets/images/footerimage.png')] text-center">
+      <div className="right text-white rounded-2xl pt-3 bg-backgroundGreenColor search card mt-5 bg-[url('assets/images/footerimage.png')] text-center w-full sm:w-[50%] md:w-[60%] lg:w-full mx-auto">
         <h1>Search by {title}</h1>
 
         <div className="w-full text-white text-sm text-left space-y-3 mt-3 pb-5 pl-2 flex flex-col">

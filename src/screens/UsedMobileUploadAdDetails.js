@@ -111,6 +111,7 @@ const UsedMobileUploadAdDetails = () => {
       title: "Latest Mobiles",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -121,6 +122,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -131,6 +133,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -141,6 +144,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -151,6 +155,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -161,6 +166,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -176,6 +182,7 @@ const UsedMobileUploadAdDetails = () => {
       title: "Top 6 By Fans",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -186,6 +193,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -196,6 +204,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -206,6 +215,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -216,6 +226,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -226,6 +237,7 @@ const UsedMobileUploadAdDetails = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -242,6 +254,7 @@ const UsedMobileUploadAdDetails = () => {
       title: "Top 10 Compaines",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -249,6 +262,7 @@ const UsedMobileUploadAdDetails = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -256,6 +270,7 @@ const UsedMobileUploadAdDetails = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -264,6 +279,7 @@ const UsedMobileUploadAdDetails = () => {
             latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -271,6 +287,7 @@ const UsedMobileUploadAdDetails = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -278,6 +295,7 @@ const UsedMobileUploadAdDetails = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null

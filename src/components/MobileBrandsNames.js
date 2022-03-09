@@ -11,7 +11,7 @@ const MobileBrandsNames = () => {
   const handleIsFilter = (value) => dispatch(isFilterMobile(value));
   return (
     <>
-      <div className="card rounded-tl-[4rem] mt-6 lg:mt-0  rounded-b-[4rem] bg-backgroundGreenColor w-full">
+      <div className="card rounded-tl-[4rem] mt-6 lg:mt-0  rounded-b-[4rem] bg-backgroundGreenColor w-full sm:w-[50%] md:w-[60%] lg:w-full mx-auto">
         <div className="cardRow w-full text-center pt-5 pb-5 text-white">
           <h1>Mobile Brands Names</h1>
         </div>

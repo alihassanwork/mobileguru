@@ -1,7 +1,6 @@
 import { actionTypes } from "../actionTypes";
 import axios from "axios";
 import { baseURL } from "../../api/baseURL";
-
 export const getMobiles = (page) => {
   return async (dispatch) => {
     const res = await axios.get(
@@ -19,7 +18,7 @@ export const getMobiles = (page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -139,7 +138,7 @@ export const getMobilesByPrice = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -169,7 +168,7 @@ export const getMobilesByRAM = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -199,7 +198,7 @@ export const getMobilesByROM = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -232,7 +231,7 @@ export const getMobilesBySize = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -262,7 +261,7 @@ export const getMobilesByMainCam = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -292,7 +291,7 @@ export const getMobilesByFrontCam = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -322,7 +321,7 @@ export const getMobilesByBattery = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -351,7 +350,7 @@ export const getMobilesByOS = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -379,7 +378,7 @@ export const getMobilesByBrandName = (values, page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -443,7 +442,7 @@ export const getOldMobiles = (page) => {
       });
       dispatch({
         type: actionTypes.MORE_MOBILES,
-        payload: res.data.success,
+        payload: res.data.data.length < 15 ? false : res.data.success,
       });
     } else {
       console.log("Sever error");
@@ -473,6 +472,47 @@ export const getLatestMobiles = () => {
       });
     } else {
       console.log("Sever error");
+    }
+  };
+};
+
+export const searchBySearchBar = (value, navigate) => {
+  console.log(value, "search bar value");
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(
+        `${baseURL}/api/v1/mobiles/filterbysearchbar`,
+
+        { value: value.trim() },
+        { params: { page: 1 } },
+        {
+          headers: {
+            accept: "application/json",
+            "Accept-Language": "en-US,en;q=0.8",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.data);
+      if (res.data.success) {
+        navigate("/MobileList", {
+          state: { title: "Search", isFilter: true },
+        });
+        console.log(res.data.data, "search by search bar data received");
+        dispatch({
+          type: actionTypes.IS_FILTER,
+          payload: true,
+        });
+        dispatch({
+          type: actionTypes.GET_MOBILES,
+          payload: res.data.data,
+        });
+      } else {
+        alert(res.data.data);
+      }
+      // eslint-disable-next-line no-unreachable
+    } catch (error) {
+      // Add custom logic to handle errors
     }
   };
 };

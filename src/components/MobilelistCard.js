@@ -38,23 +38,34 @@ const MobilelistCard = (props) => {
           onClick={() => {
             localStorage.setItem("detailId", props.item._id);
             handleSetSingleMobile(props.item);
-            navigate("/phoneDescription", {
+            navigate("/PhoneSpec", {
               state: props.item,
             });
           }}
         >
           <div className="flex justify-center">
             <img
-              className=" object-top p-2  h-[14rem]"
+              className=" object-top px-1 py-1 xs:p-2  h-[8rem] sm:h-[14rem]"
               src={`${baseURL}${mobilePhotos[0]}`}
               alt={`${mobilename}`}
             />
           </div>
+
           <div className="flex-col w-full pl-6">
             <h3>
               {mobilename} {modelNumber}
             </h3>
-            <h3 className="text-[#F4871E] font-bold text-2xl mt-2">{price}</h3>
+            <div className="flex">
+              <p className="text-xs font-light">
+                Price (PKR): {props.item.priceInPKR}{" "}
+              </p>
+            </div>
+            <div className="flex">
+              <p className="text-xs font-light">
+                Price (USD): ${props.item.priceInUSD}{" "}
+              </p>
+            </div>
+
             <p className="text-xs mt-2 font-light">
               {memory.ram.value}
               {memory.ram.unit} / {memory.rom.value}

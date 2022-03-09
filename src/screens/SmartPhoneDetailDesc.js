@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
 import { getMobileById } from "../redux/actions/mobileActions";
 import { baseURL } from "api/baseURL";
 import { getLatestMobiles } from "../redux/actions/mobileActions";
 
-
 const SmartPhoneDetailDesc = () => {
-  const { singleMobile, latestMobile } = useSelector((state) => state.mobileReducer);
+  const { singleMobile, latestMobile } = useSelector(
+    (state) => state.mobileReducer
+  );
+  const location = useLocation();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -18,8 +20,6 @@ const SmartPhoneDetailDesc = () => {
   const handleFetchMobileById = (value) => dispatch(getMobileById(value));
 
   const SlickArrowLeft = ({ currentSlide, slideCount, imgsrc, ...props }) => (
-
-
     <div className=" bg-white rounded-full w-fit p-2 ">
       <ImageAsset
         alt="prevArrow"
@@ -30,12 +30,12 @@ const SmartPhoneDetailDesc = () => {
     </div>
   );
 
-
   const leftMenu = [
     {
       title: "Latest Mobiles",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -46,6 +46,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -56,6 +57,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -66,6 +68,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -76,6 +79,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -86,6 +90,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -101,6 +106,7 @@ const SmartPhoneDetailDesc = () => {
       title: "Top 6 By Fans",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -111,6 +117,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -121,6 +128,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -131,6 +139,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -141,6 +150,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -151,6 +161,7 @@ const SmartPhoneDetailDesc = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -167,6 +178,7 @@ const SmartPhoneDetailDesc = () => {
       title: "Top 10 Compaines",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -174,6 +186,7 @@ const SmartPhoneDetailDesc = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -181,6 +194,7 @@ const SmartPhoneDetailDesc = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -189,6 +203,7 @@ const SmartPhoneDetailDesc = () => {
             latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -196,6 +211,7 @@ const SmartPhoneDetailDesc = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -203,6 +219,7 @@ const SmartPhoneDetailDesc = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -212,18 +229,6 @@ const SmartPhoneDetailDesc = () => {
       ],
     },
   ];
-
-  const SlickArrowRight = ({ currentSlide, slideCount, imgsrc, ...props }) => (
-    <div className=" bg-white rounded-full w-fit p-2">
-      <ImageAsset
-        alt="prevArrow"
-        {...props}
-        className="  h-[1rem]"
-        src={imgsrc}
-      />
-    </div>
-  );
-
   useEffect(() => {
     console.log("Hello");
     if (Object.keys(singleMobile).length === 0) {
@@ -240,10 +245,8 @@ const SmartPhoneDetailDesc = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // nextArrow: <SlickArrowRight imgsrc={"rightArrow"} />,
-    // prevArrow: <SlickArrowLeft imgsrc={"leftArrow"} />,
   };
-  console.log("single==>", singleMobile);
+
   return (
     <React.Fragment>
       <Navbar />
@@ -265,16 +268,16 @@ const SmartPhoneDetailDesc = () => {
                   <Slider {...settings}>
                     {Object.keys(singleMobile).length !== 0
                       ? singleMobile.mobilePhotos.map((imageName) => {
-                        return (
-                          <div>
-                            <img
-                              className=" object-top p-2  h-[15rem]"
-                              src={`${baseURL}${imageName}`}
-                              alt={`${singleMobile.brandName}`}
-                            />
-                          </div>
-                        );
-                      })
+                          return (
+                            <div>
+                              <img
+                                className=" object-top p-2  h-[15rem]"
+                                src={`${baseURL}${imageName}`}
+                                alt={`${singleMobile.brandName}`}
+                              />
+                            </div>
+                          );
+                        })
                       : null}
                   </Slider>
                 </div>
@@ -400,11 +403,17 @@ const SmartPhoneDetailDesc = () => {
           </div>
 
           {/* second col */}
-          <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-2 border-black">
-            <div className="w-1/2 text-center cursor-pointer font-bold text-xl ">
+          <div className="bg-white w-full flex rounded-[0.5rem] mt-5 border-2 border-black">
+            <div
+              className={` ${
+                location.pathname === "/phoneDescription"
+                  ? "bg-[#07844C] text-white"
+                  : "bg-white"
+              } w-1/2 h-full text-center py-4 cursor-pointer font-bold text-xl`}
+            >
               <h1 onClick={() => navigate("/phoneDescription")}>Description</h1>
             </div>
-            <div className="w-1/2 text-center cursor-pointer font-bold text-xl">
+            <div className="w-1/2 text-center py-4 cursor-pointer font-bold text-xl">
               <h1
                 onClick={() => {
                   navigate("/PhoneSpec");

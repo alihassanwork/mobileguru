@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Footer, ImageAsset, FilterMobileCard, Navbar } from "components";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { getMobileById } from "../redux/actions/mobileActions";
 import { baseURL } from "api/baseURL";
@@ -10,8 +10,6 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { postReview } from "../redux/actions/mobileActions";
 import { getLatestMobiles } from "../redux/actions/mobileActions";
-
-
 
 const initialValues = {
   name: "",
@@ -27,13 +25,17 @@ const validate = Yup.object({
   stars: Yup.string().required("Required"),
 });
 const SmartPhoneDetailSpec = () => {
-  const { singleMobile, latestMobile } = useSelector((state) => state.mobileReducer);
+  const { singleMobile, latestMobile } = useSelector(
+    (state) => state.mobileReducer
+  );
+  const location = useLocation();
 
   const leftMenu = [
     {
       title: "Latest Mobiles",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -44,6 +46,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -54,6 +57,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -64,6 +68,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -74,6 +79,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -84,6 +90,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -99,6 +106,7 @@ const SmartPhoneDetailSpec = () => {
       title: "Top 6 By Fans",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -109,6 +117,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[0].brandName} ${latestMobile[0].modelNumber}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -119,6 +128,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[1].brandName} ${latestMobile[1].modelNumber}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -129,6 +139,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[2].brandName} ${latestMobile[2].modelNumber}`,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -139,6 +150,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[3].brandName} ${latestMobile[3].modelNumber}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -149,6 +161,7 @@ const SmartPhoneDetailSpec = () => {
               : `${latestMobile[4].brandName} ${latestMobile[4].modelNumber}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -165,6 +178,7 @@ const SmartPhoneDetailSpec = () => {
       title: "Top 10 Compaines",
       products: [
         {
+          item: latestMobile[0],
           src:
             latestMobile.length < 1
               ? null
@@ -172,6 +186,7 @@ const SmartPhoneDetailSpec = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[0].brandName}`,
         },
         {
+          item: latestMobile[1],
           src:
             latestMobile.length < 1
               ? null
@@ -179,6 +194,7 @@ const SmartPhoneDetailSpec = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[1].brandName}`,
         },
         {
+          item: latestMobile[2],
           src:
             latestMobile.length < 1
               ? null
@@ -187,6 +203,7 @@ const SmartPhoneDetailSpec = () => {
             latestMobile.length < 1 ? null : `${latestMobile[2].brandName} `,
         },
         {
+          item: latestMobile[3],
           src:
             latestMobile.length < 1
               ? null
@@ -194,6 +211,7 @@ const SmartPhoneDetailSpec = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[3].brandName}`,
         },
         {
+          item: latestMobile[4],
           src:
             latestMobile.length < 1
               ? null
@@ -201,6 +219,7 @@ const SmartPhoneDetailSpec = () => {
           name: latestMobile.length < 1 ? null : `${latestMobile[4].brandName}`,
         },
         {
+          item: latestMobile[5],
           src:
             latestMobile.length < 1
               ? null
@@ -210,8 +229,6 @@ const SmartPhoneDetailSpec = () => {
       ],
     },
   ];
-
-
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -219,6 +236,7 @@ const SmartPhoneDetailSpec = () => {
 
   const handlePostMobileReview = (value) => dispatch(postReview(value));
   useEffect(() => {
+    getLatestMobiles(getLatestMobiles());
     if (Object.keys(singleMobile).length === 0) {
       const id = localStorage.getItem("detailId");
       handleFetchMobileById(id);
@@ -240,12 +258,13 @@ const SmartPhoneDetailSpec = () => {
 
   const total = check
     ? singleMobile.reviews.reduce(
-      //reduce go through the array and cartItem is the each item in the array
-      (accumulatedTotal, review) => accumulatedTotal + parseInt(review.stars),
-      0 //0 is the start point of accumulatedTotal
-    )
+        //reduce go through the array and cartItem is the each item in the array
+        (accumulatedTotal, review) => accumulatedTotal + parseInt(review.stars),
+        0 //0 is the start point of accumulatedTotal
+      )
     : 1;
   const averageReview = check ? total / singleMobile.reviews.length : 0;
+
   return (
     <React.Fragment>
       <Navbar />
@@ -267,16 +286,16 @@ const SmartPhoneDetailSpec = () => {
                   <Slider {...settings}>
                     {Object.keys(singleMobile).length !== 0
                       ? singleMobile.mobilePhotos.map((imageName) => {
-                        return (
-                          <div>
-                            <img
-                              className=" object-top p-2  h-[15rem]"
-                              src={`${baseURL}${imageName}`}
-                              alt={`${singleMobile.brandName}`}
-                            />
-                          </div>
-                        );
-                      })
+                          return (
+                            <div>
+                              <img
+                                className=" object-top p-2  h-[15rem]"
+                                src={`${baseURL}${imageName}`}
+                                alt={`${singleMobile.brandName}`}
+                              />
+                            </div>
+                          );
+                        })
                       : null}
                   </Slider>
                 </div>
@@ -400,8 +419,12 @@ const SmartPhoneDetailSpec = () => {
           </div>
 
           {/* second col */}
-          <div className="bg-white w-full flex pt-5 pb-5 rounded-[0.5rem] mt-5 border-2 border-black">
-            <div className="w-1/2 text-center cursor-pointer font-bold text-xl ">
+          <div
+            className={`bg-white w-full flex  rounded-[0.5rem] mt-5 border-2 overflow-hidden border-black`}
+          >
+            <div
+              className={`w-1/2 text-center cursor-pointer font-bold text-xl py-4`}
+            >
               <h1
                 className="cursor-pointer"
                 onClick={() => {
@@ -411,7 +434,13 @@ const SmartPhoneDetailSpec = () => {
                 Description
               </h1>
             </div>
-            <div className="w-1/2 text-center cursor-pointer font-bold text-xl">
+            <div
+              className={` ${
+                location.pathname === "/PhoneSpec"
+                  ? "bg-[#07844C] text-white"
+                  : "bg-white"
+              } w-1/2 h-full text-center py-4 cursor-pointer font-bold text-xl`}
+            >
               <h1>Specification</h1>
             </div>
           </div>
@@ -755,10 +784,11 @@ const SmartPhoneDetailSpec = () => {
                   <h3 className="w-1/3 text-sm font-bold">Extra</h3>
                   <label htmlFor="" className="text-sm font-medium w-[67%]">
                     {check
-                      ? `${singleMobile.features.extra
-                        ? singleMobile.features.extra
-                        : "Nil"
-                      }`
+                      ? `${
+                          singleMobile.features.extra
+                            ? singleMobile.features.extra
+                            : "Nil"
+                        }`
                       : ""}
                   </label>
                 </div>

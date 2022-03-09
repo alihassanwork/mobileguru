@@ -102,10 +102,14 @@ const MobileListView = () => {
       if (state.title === "advance") {
         console.log("advance");
       }
+      if (state.title === "Search") {
+        console.log("advance search==>", state, allMobiles);
+      }
     } else {
       handleFetchMobiles(pageNo);
     }
   }, [pageNo, memoizedValue, filterCheck, changeFilter]);
+  console.log("more===>", moreMobile);
   return (
     <React.Fragment>
       <Navbar />
@@ -133,7 +137,7 @@ const MobileListView = () => {
           </div>
           <div className="lg:pl-4 lg:pr-4 rounded-md bg-center bg-[#D2DCE7] ">
             <div className="flex-1  p-4 pl-1 pr-1 ">
-              <div className="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 gap-2 gap-y-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-3 gap-2 gap-y-6">
                 {allMobiles !== undefined
                   ? allMobiles.map((item) => {
                       return <MobilelistCard item={item} key={item._id} />;
@@ -185,7 +189,6 @@ const MobileListView = () => {
               Wanna Buy And Sell Used <br /> Smarts Phone
             </button>
           </div>
-
           <RightSideMenu />
         </div>
       </div>
